@@ -1,0 +1,1203 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CoutureManager - Nabil Apps</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f4f7fb;
+            color: #222;
+            line-height: 1.6;
+            transition: background .3s, color .3s;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        nav {
+            background: #1764e8;
+            color: white;
+            min-height: 74px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 5%;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0,0,0,.12);
+            gap: 20px;
+        }
+
+        .logo {
+            font-size: 30px;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+
+        nav ul li a {
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            transition: .3s;
+        }
+
+        nav ul li a:hover {
+            color: #dce9ff;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .lang-btn,
+        .theme-btn {
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            border-radius: 20px;
+            padding: 8px 11px;
+            transition: .3s;
+        }
+
+        .lang-btn {
+            background: white;
+            color: #1764e8;
+        }
+
+        .lang-btn:hover,
+        .lang-btn.active {
+            background: #ffd700;
+            color: #111;
+        }
+
+        .theme-btn {
+            width: 40px;
+            height: 40px;
+            padding: 0;
+            background: white;
+            color: #1764e8;
+            font-size: 18px;
+        }
+
+        .theme-btn:hover {
+            transform: rotate(15deg);
+        }
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+            background: linear-gradient(135deg, #1764e8, #3d8bf5);
+            color: white;
+            text-align: center;
+            padding: 85px 20px;
+        }
+
+        .hero h1 {
+            font-size: 58px;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 23px;
+            max-width: 900px;
+            margin: auto;
+        }
+
+        /* =========================
+           CONTAINER
+        ========================= */
+
+        .container {
+            width: 88%;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        section {
+            padding: 65px 0;
+        }
+
+        section h2 {
+            color: #1764e8;
+            font-size: 42px;
+            margin-bottom: 35px;
+        }
+
+        /* =========================
+           MAIN IMAGE
+        ========================= */
+
+        .main-image {
+            text-align: center;
+        }
+
+        .main-image img {
+            width: 100%;
+            max-width: 1200px;
+            border-radius: 18px;
+            box-shadow: 0 12px 35px rgba(0,0,0,.15);
+            display: block;
+            margin: auto;
+        }
+
+        .main-image p {
+            margin-top: 12px;
+            font-size: 17px;
+            color: #555;
+        }
+
+        /* =========================
+           DESCRIPTION
+        ========================= */
+
+        .description {
+            font-size: 20px;
+            color: #333;
+            max-width: 1100px;
+        }
+
+        /* =========================
+           FEATURES
+        ========================= */
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 22px;
+        }
+
+        .feature {
+            background: white;
+            border-radius: 16px;
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(0,0,0,.08);
+            transition: .3s;
+        }
+
+        .feature:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 30px rgba(0,0,0,.13);
+        }
+
+        .feature .icon {
+            font-size: 42px;
+            margin-bottom: 15px;
+        }
+
+        .feature h3 {
+            color: #1764e8;
+            font-size: 21px;
+            margin-bottom: 10px;
+        }
+
+        .feature p {
+            color: #555;
+            font-size: 15px;
+        }
+
+        /* =========================
+           SCREENSHOTS
+        ========================= */
+
+        .screenshots {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 28px;
+        }
+
+        .screenshot-card {
+            background: white;
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 10px 28px rgba(0,0,0,.10);
+            transition: .3s;
+        }
+
+        .screenshot-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .screenshot-card img {
+            width: 100%;
+            height: 360px;
+            object-fit: cover;
+            display: block;
+            background: #f1f3f7;
+        }
+
+        .screenshot-title {
+            padding: 18px 20px;
+            font-size: 20px;
+            font-weight: bold;
+            color: #222;
+        }
+
+        /* =========================
+           INFO
+        ========================= */
+
+        .info-box {
+            background: white;
+            border-radius: 18px;
+            padding: 35px;
+            box-shadow: 0 8px 25px rgba(0,0,0,.08);
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 14px 0;
+            border-bottom: 1px solid #eee;
+            font-size: 18px;
+            gap: 20px;
+        }
+
+        .info-row:last-child {
+            border-bottom: none;
+        }
+
+        .info-label {
+            font-weight: bold;
+            color: #1764e8;
+        }
+
+        /* =========================
+           BACK BUTTON
+        ========================= */
+
+        .back-section {
+            text-align: center;
+            padding: 20px 0 70px;
+        }
+
+        .back-btn {
+            display: inline-block;
+            background: #1764e8;
+            color: white;
+            padding: 15px 35px;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            transition: .3s;
+        }
+
+        .back-btn:hover {
+            background: #0d50c5;
+            transform: translateY(-2px);
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            background: #1764e8;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            font-size: 17px;
+        }
+
+        footer a {
+            color: white;
+            font-weight: bold;
+        }
+
+        /* =========================
+           DARK MODE
+        ========================= */
+
+        body.dark {
+            background: #0f172a;
+            color: #f1f5f9;
+        }
+
+        body.dark nav {
+            background: #111827;
+        }
+
+        body.dark .hero {
+            background: linear-gradient(135deg, #0f172a, #1e3a8a);
+        }
+
+        body.dark section {
+            background: #0f172a;
+        }
+
+        body.dark .description,
+        body.dark .main-image p {
+            color: #cbd5e1;
+        }
+
+        body.dark .feature,
+        body.dark .screenshot-card,
+        body.dark .info-box {
+            background: #1e293b;
+            color: white;
+        }
+
+        body.dark .feature p {
+            color: #cbd5e1;
+        }
+
+        body.dark .screenshot-title {
+            color: white;
+        }
+
+        body.dark .info-row {
+            border-color: #334155;
+        }
+
+        body.dark .theme-btn,
+        body.dark .lang-btn {
+            background: #1e293b;
+            color: white;
+        }
+
+        body.dark .lang-btn.active {
+            background: #ffd700;
+            color: #111;
+        }
+
+        body.dark footer {
+            background: #020617;
+        }
+
+        /* =========================
+           RTL
+        ========================= */
+
+        html[dir="rtl"] {
+            direction: rtl;
+        }
+
+        html[dir="rtl"] nav ul {
+            direction: rtl;
+        }
+
+        html[dir="rtl"] .info-row {
+            direction: rtl;
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 1000px) {
+
+            .features {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .screenshots {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 45px;
+            }
+        }
+
+        @media (max-width: 750px) {
+
+            nav {
+                flex-direction: column;
+                padding: 15px 5%;
+            }
+
+            nav ul {
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .nav-actions {
+                justify-content: center;
+            }
+
+            .hero {
+                padding: 60px 20px;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .hero p {
+                font-size: 18px;
+            }
+
+            section {
+                padding: 50px 0;
+            }
+
+            section h2 {
+                font-size: 32px;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+            .screenshot-card img {
+                height: auto;
+            }
+
+            .info-row {
+                flex-direction: column;
+                gap: 5px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- =========================
+     NAVBAR
+========================= -->
+
+<nav>
+
+    <div class="logo">
+        Nabil Apps
+    </div>
+
+    <ul>
+        <li>
+            <a href="../index.html" data-key="navHome">Accueil</a>
+        </li>
+
+        <li>
+            <a href="../index.html#services" data-key="navServices">
+                Services
+            </a>
+        </li>
+
+        <li>
+            <a href="../index.html#portfolio" data-key="navPortfolio">
+                Portfolio
+            </a>
+        </li>
+
+        <li>
+            <a href="../index.html#contact" data-key="navContact">
+                Contact
+            </a>
+        </li>
+    </ul>
+
+    <div class="nav-actions">
+
+        <button class="lang-btn" data-lang="fr">FR</button>
+        <button class="lang-btn" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="ar">AR</button>
+
+        <button class="theme-btn" id="themeToggle">
+            🌙
+        </button>
+
+    </div>
+
+</nav>
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<header class="hero">
+
+    <h1 id="projectTitle">
+        CoutureManager
+    </h1>
+
+    <p id="heroText">
+        Solution professionnelle de gestion pour les ateliers
+        de couture, les clientes, les commandes et les rendez-vous.
+    </p>
+
+</header>
+
+
+<main class="container">
+
+
+    <!-- =========================
+         MAIN IMAGE
+    ========================= -->
+
+    <section>
+
+        <div class="main-image">
+
+            <img
+                src="../images/couture.png"
+                alt="CoutureManager - Application de gestion de couture"
+            >
+
+            <p id="mainImageText">
+                CoutureManager — Gestion professionnelle d'un atelier de couture
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         DESCRIPTION
+    ========================= -->
+
+    <section>
+
+        <h2 data-key="descriptionTitle">
+            Description
+        </h2>
+
+        <p class="description" id="descriptionText">
+
+            <strong>CoutureManager</strong> est une application professionnelle
+            destinée aux couturières et aux ateliers de couture.
+
+            Elle permet de gérer facilement les clientes, les mesures,
+            les commandes, les modèles, les rendez-vous, les paiements
+            et le suivi des travaux de couture à partir d'une interface
+            moderne et simple à utiliser.
+
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         FEATURES
+    ========================= -->
+
+    <section>
+
+        <h2 data-key="featuresTitle">
+            Fonctionnalités
+        </h2>
+
+        <div class="features">
+
+            <div class="feature">
+                <div class="icon">👩</div>
+                <h3 data-key="feature1Title">Gestion des clientes</h3>
+                <p data-key="feature1Text">
+                    Enregistrement et gestion complète des informations des clientes.
+                </p>
+            </div>
+
+            <div class="feature">
+                <div class="icon">📏</div>
+                <h3 data-key="feature2Title">Mesures</h3>
+                <p data-key="feature2Text">
+                    Enregistrement des mesures nécessaires pour chaque cliente.
+                </p>
+            </div>
+
+            <div class="feature">
+                <div class="icon">🧵</div>
+                <h3 data-key="feature3Title">Commandes</h3>
+                <p data-key="feature3Text">
+                    Suivi des commandes de couture et de leur état d'avancement.
+                </p>
+            </div>
+
+            <div class="feature">
+                <div class="icon">📅</div>
+                <h3 data-key="feature4Title">Rendez-vous</h3>
+                <p data-key="feature4Text">
+                    Organisation des rendez-vous et suivi du calendrier.
+                </p>
+            </div>
+
+            <div class="feature">
+                <div class="icon">💰</div>
+                <h3 data-key="feature5Title">Paiements</h3>
+                <p data-key="feature5Text">
+                    Suivi des paiements, acomptes et montants restants.
+                </p>
+            </div>
+
+            <div class="feature">
+                <div class="icon">👗</div>
+                <h3 data-key="feature6Title">Modèles</h3>
+                <p data-key="feature6Text">
+                    Gestion des modèles et types de vêtements réalisés.
+                </p>
+            </div>
+
+            <div class="feature">
+                <div class="icon">📊</div>
+                <h3 data-key="feature7Title">Statistiques</h3>
+                <p data-key="feature7Text">
+                    Consultation des statistiques et de l'activité de l'atelier.
+                </p>
+            </div>
+
+            <div class="feature">
+                <div class="icon">🔐</div>
+                <h3 data-key="feature8Title">Accès sécurisé</h3>
+                <p data-key="feature8Text">
+                    Gestion sécurisée de l'accès à l'application.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         SCREENSHOTS
+    ========================= -->
+
+    <section>
+
+        <h2 data-key="screenshotsTitle">
+            Captures d'écran
+        </h2>
+
+        <div class="screenshots">
+
+            <div class="screenshot-card">
+
+                <img
+                    src="../screenshots/couture-dashboard.png"
+                    alt="Tableau de bord CoutureManager"
+                >
+
+                <div
+                    class="screenshot-title"
+                    data-key="dashboardTitle"
+                >
+                    Tableau de bord
+                </div>
+
+            </div>
+
+
+            <div class="screenshot-card">
+
+                <img
+                    src="../images/couture.png"
+                    alt="Écran de connexion CoutureManager"
+                >
+
+                <div
+                    class="screenshot-title"
+                    data-key="loginTitle"
+                >
+                    Écran de connexion
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         PROJECT INFO
+    ========================= -->
+
+    <section>
+
+        <h2 data-key="infoTitle">
+            Informations sur le projet
+        </h2>
+
+        <div class="info-box">
+
+            <div class="info-row">
+
+                <span class="info-label" data-key="infoName">
+                    Nom
+                </span>
+
+                <span>
+                    CoutureManager
+                </span>
+
+            </div>
+
+
+            <div class="info-row">
+
+                <span class="info-label" data-key="infoCategory">
+                    Catégorie
+                </span>
+
+                <span data-key="categoryValue">
+                    Gestion / Couture
+                </span>
+
+            </div>
+
+
+            <div class="info-row">
+
+                <span class="info-label" data-key="infoType">
+                    Type
+                </span>
+
+                <span data-key="typeValue">
+                    Application de gestion
+                </span>
+
+            </div>
+
+
+            <div class="info-row">
+
+                <span class="info-label" data-key="infoDeveloper">
+                    Développé par
+                </span>
+
+                <span>
+                    Nabil Apps
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         BACK
+    ========================= -->
+
+    <div class="back-section">
+
+        <a
+            href="../index.html#portfolio"
+            class="back-btn"
+            data-key="backButton"
+        >
+            ← Retour aux projets
+        </a>
+
+    </div>
+
+</main>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+    <p>
+        © 2026
+        <a href="../index.html">
+            Nabil Apps
+        </a>
+        —
+        <span id="footerProject">
+            CoutureManager
+        </span>
+    </p>
+
+    <p style="margin-top:8px;" data-key="developedBy">
+        Développé par <strong>Nabil Apps</strong>
+    </p>
+
+</footer>
+
+
+<script>
+
+    /* =====================================================
+       TRANSLATIONS
+    ===================================================== */
+
+    const translations = {
+
+        fr: {
+
+            navHome: "Accueil",
+            navServices: "Services",
+            navPortfolio: "Portfolio",
+            navContact: "Contact",
+
+            heroText:
+                "Solution professionnelle de gestion pour les ateliers de couture, les clientes, les commandes et les rendez-vous.",
+
+            mainImageText:
+                "CoutureManager — Gestion professionnelle d'un atelier de couture",
+
+            descriptionTitle: "Description",
+
+            descriptionText:
+                "CoutureManager est une application professionnelle destinée aux couturières et aux ateliers de couture. Elle permet de gérer facilement les clientes, les mesures, les commandes, les modèles, les rendez-vous, les paiements et le suivi des travaux de couture à partir d'une interface moderne et simple à utiliser.",
+
+            featuresTitle: "Fonctionnalités",
+
+            feature1Title: "Gestion des clientes",
+            feature1Text: "Enregistrement et gestion complète des informations des clientes.",
+
+            feature2Title: "Mesures",
+            feature2Text: "Enregistrement des mesures nécessaires pour chaque cliente.",
+
+            feature3Title: "Commandes",
+            feature3Text: "Suivi des commandes de couture et de leur état d'avancement.",
+
+            feature4Title: "Rendez-vous",
+            feature4Text: "Organisation des rendez-vous et suivi du calendrier.",
+
+            feature5Title: "Paiements",
+            feature5Text: "Suivi des paiements, acomptes et montants restants.",
+
+            feature6Title: "Modèles",
+            feature6Text: "Gestion des modèles et types de vêtements réalisés.",
+
+            feature7Title: "Statistiques",
+            feature7Text: "Consultation des statistiques et de l'activité de l'atelier.",
+
+            feature8Title: "Accès sécurisé",
+            feature8Text: "Gestion sécurisée de l'accès à l'application.",
+
+            screenshotsTitle: "Captures d'écran",
+
+            dashboardTitle: "Tableau de bord",
+            loginTitle: "Écran de connexion",
+
+            infoTitle: "Informations sur le projet",
+
+            infoName: "Nom",
+            infoCategory: "Catégorie",
+            infoType: "Type",
+            infoDeveloper: "Développé par",
+
+            categoryValue: "Gestion / Couture",
+            typeValue: "Application de gestion",
+
+            backButton: "← Retour aux projets",
+
+            developedBy: "Développé par <strong>Nabil Apps</strong>"
+        },
+
+
+        en: {
+
+            navHome: "Home",
+            navServices: "Services",
+            navPortfolio: "Portfolio",
+            navContact: "Contact",
+
+            heroText:
+                "Professional management solution for sewing workshops, customers, orders and appointments.",
+
+            mainImageText:
+                "CoutureManager — Professional sewing workshop management",
+
+            descriptionTitle: "Description",
+
+            descriptionText:
+                "CoutureManager is a professional application designed for seamstresses and sewing workshops. It makes it easy to manage customers, measurements, orders, models, appointments, payments and work tracking through a modern and easy-to-use interface.",
+
+            featuresTitle: "Features",
+
+            feature1Title: "Customer Management",
+            feature1Text: "Complete registration and management of customer information.",
+
+            feature2Title: "Measurements",
+            feature2Text: "Record the measurements required for each customer.",
+
+            feature3Title: "Orders",
+            feature3Text: "Track sewing orders and their progress.",
+
+            feature4Title: "Appointments",
+            feature4Text: "Organize appointments and manage the workshop calendar.",
+
+            feature5Title: "Payments",
+            feature5Text: "Track payments, deposits and remaining amounts.",
+
+            feature6Title: "Models",
+            feature6Text: "Manage clothing models and garment types.",
+
+            feature7Title: "Statistics",
+            feature7Text: "View workshop statistics and activity.",
+
+            feature8Title: "Secure Access",
+            feature8Text: "Secure management of application access.",
+
+            screenshotsTitle: "Screenshots",
+
+            dashboardTitle: "Dashboard",
+            loginTitle: "Login Screen",
+
+            infoTitle: "Project Information",
+
+            infoName: "Name",
+            infoCategory: "Category",
+            infoType: "Type",
+            infoDeveloper: "Developed by",
+
+            categoryValue: "Management / Sewing",
+            typeValue: "Management Application",
+
+            backButton: "← Back to Projects",
+
+            developedBy: "Developed by <strong>Nabil Apps</strong>"
+        },
+
+
+        ar: {
+
+            navHome: "الرئيسية",
+            navServices: "الخدمات",
+            navPortfolio: "أعمالنا",
+            navContact: "اتصل بنا",
+
+            heroText:
+                "حل احترافي لتسيير ورشات الخياطة والزبائن والطلبات والمواعيد.",
+
+            mainImageText:
+                "CoutureManager — تسيير احترافي لورشة الخياطة",
+
+            descriptionTitle: "الوصف",
+
+            descriptionText:
+                "CoutureManager هو تطبيق احترافي مخصص للخياطات وورشات الخياطة. يسمح بتسيير الزبائن والمقاسات والطلبات والنماذج والمواعيد والمدفوعات ومتابعة أعمال الخياطة من خلال واجهة عصرية وسهلة الاستخدام.",
+
+            featuresTitle: "الوظائف",
+
+            feature1Title: "تسيير الزبائن",
+            feature1Text: "تسجيل وتسيير كامل لمعلومات الزبائن.",
+
+            feature2Title: "المقاسات",
+            feature2Text: "تسجيل المقاسات الضرورية لكل زبون.",
+
+            feature3Title: "الطلبات",
+            feature3Text: "متابعة طلبات الخياطة وحالة تقدمها.",
+
+            feature4Title: "المواعيد",
+            feature4Text: "تنظيم المواعيد وتسيير رزنامة الورشة.",
+
+            feature5Title: "المدفوعات",
+            feature5Text: "متابعة المدفوعات والتسبيقات والمبالغ المتبقية.",
+
+            feature6Title: "النماذج",
+            feature6Text: "تسيير نماذج وأنواع الملابس المنجزة.",
+
+            feature7Title: "الإحصائيات",
+            feature7Text: "عرض إحصائيات ونشاط ورشة الخياطة.",
+
+            feature8Title: "الدخول الآمن",
+            feature8Text: "تسيير آمن للدخول إلى التطبيق.",
+
+            screenshotsTitle: "صور من التطبيق",
+
+            dashboardTitle: "لوحة التحكم",
+            loginTitle: "شاشة تسجيل الدخول",
+
+            infoTitle: "معلومات المشروع",
+
+            infoName: "الاسم",
+            infoCategory: "الفئة",
+            infoType: "النوع",
+            infoDeveloper: "المطور",
+
+            categoryValue: "تسيير / خياطة",
+            typeValue: "تطبيق تسيير",
+
+            backButton: "← العودة إلى المشاريع",
+
+            developedBy: "تم التطوير بواسطة <strong>Nabil Apps</strong>"
+        }
+
+    };
+
+
+    /* =====================================================
+       LANGUAGE
+    ===================================================== */
+
+    function setLanguage(lang) {
+
+        if (!translations[lang]) {
+            lang = "fr";
+        }
+
+        const t = translations[lang];
+
+        document.documentElement.lang = lang;
+
+        if (lang === "ar") {
+            document.documentElement.dir = "rtl";
+        } else {
+            document.documentElement.dir = "ltr";
+        }
+
+
+        document.querySelectorAll("[data-key]")
+            .forEach(function(element) {
+
+                const key = element.dataset.key;
+
+                if (t[key] !== undefined) {
+
+                    if (
+                        key === "developedBy"
+                    ) {
+                        element.innerHTML = t[key];
+                    } else {
+                        element.textContent = t[key];
+                    }
+                }
+            });
+
+
+        document.getElementById("heroText").textContent =
+            t.heroText;
+
+        document.getElementById("mainImageText").textContent =
+            t.mainImageText;
+
+        document.getElementById("descriptionText").textContent =
+            t.descriptionText;
+
+
+        document.querySelectorAll(".lang-btn")
+            .forEach(function(button) {
+
+                button.classList.remove("active");
+
+                if (button.dataset.lang === lang) {
+                    button.classList.add("active");
+                }
+
+            });
+
+
+        localStorage.setItem(
+            "nabilAppsLanguage",
+            lang
+        );
+    }
+
+
+    /* =====================================================
+       DARK MODE
+    ===================================================== */
+
+    const themeButton =
+        document.getElementById("themeToggle");
+
+
+    function loadTheme() {
+
+        const savedTheme =
+            localStorage.getItem("theme");
+
+        if (savedTheme === "dark") {
+
+            document.body.classList.add("dark");
+
+            themeButton.textContent = "☀️";
+
+        } else {
+
+            document.body.classList.remove("dark");
+
+            themeButton.textContent = "🌙";
+        }
+    }
+
+
+    themeButton.addEventListener(
+        "click",
+        function() {
+
+            const dark =
+                document.body.classList.toggle("dark");
+
+            localStorage.setItem(
+                "theme",
+                dark ? "dark" : "light"
+            );
+
+            themeButton.textContent =
+                dark ? "☀️" : "🌙";
+        }
+    );
+
+
+    /* =====================================================
+       LANGUAGE BUTTONS
+    ===================================================== */
+
+    document.querySelectorAll(".lang-btn")
+        .forEach(function(button) {
+
+            button.addEventListener(
+                "click",
+                function() {
+
+                    setLanguage(
+                        this.dataset.lang
+                    );
+
+                }
+            );
+
+        });
+
+
+    /* =====================================================
+       INITIALIZATION
+    ===================================================== */
+
+    const savedLanguage =
+        localStorage.getItem(
+            "nabilAppsLanguage"
+        ) || "fr";
+
+    setLanguage(savedLanguage);
+
+    loadTheme();
+
+</script>
+
+</body>
+</html>

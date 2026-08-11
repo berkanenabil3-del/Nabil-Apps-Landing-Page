@@ -1,0 +1,1279 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>MedRDV Mobile | Nabil Apps</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f4f7fb;
+            color: #222;
+            line-height: 1.6;
+            transition: 0.3s;
+        }
+
+        /* =========================
+           NAVBAR
+        ========================== */
+
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+
+            width: 100%;
+
+            background: #1264e8;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            padding: 18px 5%;
+
+            box-shadow:
+                0 3px 12px rgba(0,0,0,0.15);
+        }
+
+        .logo {
+            color: white;
+
+            font-size: 30px;
+            font-weight: bold;
+
+            text-decoration: none;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: white;
+
+            text-decoration: none;
+
+            font-size: 17px;
+            font-weight: bold;
+
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #dceaff;
+        }
+
+        /* =========================
+           LANGUAGE
+        ========================== */
+
+        .language-switcher {
+            display: flex;
+            gap: 7px;
+        }
+
+        .lang-btn {
+            border: 1px solid rgba(255,255,255,0.7);
+
+            background: transparent;
+
+            color: white;
+
+            padding: 7px 12px;
+
+            border-radius: 20px;
+
+            cursor: pointer;
+
+            font-weight: bold;
+
+            transition: 0.3s;
+        }
+
+        .lang-btn:hover,
+        .lang-btn.active {
+            background: white;
+            color: #1264e8;
+        }
+
+        /* =========================
+           HERO
+        ========================== */
+
+        .hero {
+            min-height: 420px;
+
+            display: flex;
+
+            justify-content: center;
+            align-items: center;
+
+            text-align: center;
+
+            padding: 70px 20px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #1264e8,
+                    #3b8cff
+                );
+
+            color: white;
+        }
+
+        .hero-content {
+            max-width: 1000px;
+        }
+
+        .hero h1 {
+            font-size: 58px;
+
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 24px;
+
+            margin-bottom: 30px;
+        }
+
+        .hero-button {
+            display: inline-block;
+
+            background: white;
+
+            color: #1264e8;
+
+            padding: 14px 30px;
+
+            border-radius: 30px;
+
+            text-decoration: none;
+
+            font-weight: bold;
+
+            font-size: 18px;
+
+            transition: 0.3s;
+        }
+
+        .hero-button:hover {
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 8px 20px rgba(0,0,0,0.2);
+        }
+
+        /* =========================
+           GENERAL SECTION
+        ========================== */
+
+        section {
+            max-width: 1200px;
+
+            margin: auto;
+
+            padding: 70px 30px;
+        }
+
+        section h2 {
+            color: #1264e8;
+
+            font-size: 38px;
+
+            margin-bottom: 30px;
+        }
+
+        /* =========================
+           DESCRIPTION
+        ========================== */
+
+        .description {
+            background: white;
+        }
+
+        .description p {
+            font-size: 20px;
+
+            max-width: 1000px;
+        }
+
+        /* =========================
+           FEATURES
+        ========================== */
+
+        .features {
+            background: #f4f7fb;
+        }
+
+        .features-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 20px;
+        }
+
+        .feature-card {
+            background: white;
+
+            padding: 28px;
+
+            min-height: 140px;
+
+            border-radius: 15px;
+
+            box-shadow:
+                0 8px 25px
+                rgba(0,0,0,0.08);
+
+            transition: 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-6px);
+
+            box-shadow:
+                0 12px 30px
+                rgba(0,0,0,0.12);
+        }
+
+        .feature-icon {
+            font-size: 35px;
+
+            margin-bottom: 10px;
+        }
+
+        .feature-card h3 {
+            color: #1264e8;
+
+            margin-bottom: 8px;
+        }
+
+        /* =========================
+           SCREENSHOTS
+        ========================== */
+
+        .screenshots {
+            background: white;
+        }
+
+        .screenshots-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 30px;
+        }
+
+        .screenshot-card {
+            background: white;
+
+            border-radius: 18px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 10px 30px
+                rgba(0,0,0,0.12);
+
+            transition: 0.3s;
+        }
+
+        .screenshot-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .screenshot-card img {
+            width: 100%;
+
+            height: 360px;
+
+            object-fit: contain;
+
+            display: block;
+
+            background: #eef3f9;
+        }
+
+        .screenshot-title {
+            padding: 18px 20px;
+
+            font-size: 20px;
+
+            font-weight: bold;
+
+            color: #1264e8;
+        }
+
+        /* =========================
+           ADVANTAGES
+        ========================== */
+
+        .advantages {
+            background: #f4f7fb;
+        }
+
+        .advantages-list {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 15px;
+
+            list-style: none;
+        }
+
+        .advantages-list li {
+            background: white;
+
+            padding: 18px 22px;
+
+            border-radius: 10px;
+
+            box-shadow:
+                0 5px 18px
+                rgba(0,0,0,0.07);
+
+            font-size: 18px;
+        }
+
+        .advantages-list li::before {
+            content: "✓";
+
+            color: #1264e8;
+
+            font-weight: bold;
+
+            margin-right: 10px;
+        }
+
+        /* =========================
+           CONTACT
+        ========================== */
+
+        .contact {
+            text-align: center;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #1264e8,
+                    #2d83ff
+                );
+
+            color: white;
+
+            max-width: none;
+        }
+
+        .contact h2 {
+            color: white;
+        }
+
+        .contact p {
+            font-size: 20px;
+
+            margin-bottom: 25px;
+        }
+
+        .contact-button {
+            display: inline-block;
+
+            background: white;
+
+            color: #1264e8;
+
+            padding: 14px 35px;
+
+            border-radius: 30px;
+
+            text-decoration: none;
+
+            font-weight: bold;
+
+            font-size: 18px;
+        }
+
+        /* =========================
+           FOOTER
+        ========================== */
+
+        footer {
+            background: #0952c7;
+
+            color: white;
+
+            text-align: center;
+
+            padding: 25px;
+        }
+
+        footer p {
+            margin: 5px;
+        }
+
+        /* =========================
+           RTL ARABIC
+        ========================== */
+
+        html[dir="rtl"] body {
+            text-align: right;
+        }
+
+        html[dir="rtl"] .navbar {
+            flex-direction: row-reverse;
+        }
+
+        html[dir="rtl"] .nav-right {
+            flex-direction: row-reverse;
+        }
+
+        html[dir="rtl"] .nav-links {
+            flex-direction: row-reverse;
+        }
+
+        html[dir="rtl"] .hero {
+            direction: rtl;
+        }
+
+        html[dir="rtl"] section {
+            direction: rtl;
+        }
+
+        html[dir="rtl"] .advantages-list li::before {
+            margin-right: 0;
+            margin-left: 10px;
+        }
+
+        html[dir="rtl"] .language-switcher {
+            direction: ltr;
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================== */
+
+        @media (max-width: 1000px) {
+
+            .features-grid {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+        }
+
+        @media (max-width: 900px) {
+
+            .navbar {
+                flex-wrap: wrap;
+
+                gap: 15px;
+            }
+
+            .nav-right {
+                flex-wrap: wrap;
+
+                justify-content: center;
+            }
+
+            .hero h1 {
+                font-size: 45px;
+            }
+
+            .hero p {
+                font-size: 20px;
+            }
+
+            .screenshots-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .advantages-list {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+        @media (max-width: 650px) {
+
+            .navbar {
+                flex-direction: column;
+
+                gap: 15px;
+
+                padding: 15px;
+            }
+
+            html[dir="rtl"] .navbar {
+                flex-direction: column;
+            }
+
+            .nav-right {
+                flex-direction: column;
+
+                gap: 12px;
+            }
+
+            html[dir="rtl"] .nav-right {
+                flex-direction: column;
+            }
+
+            .nav-links {
+                gap: 15px;
+
+                flex-wrap: wrap;
+
+                justify-content: center;
+            }
+
+            .hero h1 {
+                font-size: 38px;
+            }
+
+            .hero p {
+                font-size: 18px;
+            }
+
+            .features-grid,
+            .screenshots-grid,
+            .advantages-list {
+                grid-template-columns: 1fr;
+            }
+
+            .screenshot-card img {
+                height: auto;
+
+                min-height: 250px;
+            }
+
+            section {
+                padding: 50px 20px;
+            }
+
+            section h2 {
+                font-size: 32px;
+            }
+
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     NAVBAR
+========================== -->
+
+<nav class="navbar">
+
+    <a href="../index.html" class="logo">
+        Nabil Apps
+    </a>
+
+
+    <div class="nav-right">
+
+        <ul class="nav-links">
+
+            <li>
+                <a
+                    href="../index.html"
+                    data-fr="Accueil"
+                    data-en="Home"
+                    data-ar="الرئيسية">
+                    Accueil
+                </a>
+            </li>
+
+            <li>
+                <a
+                    href="../index.html#services"
+                    data-fr="Services"
+                    data-en="Services"
+                    data-ar="الخدمات">
+                    Services
+                </a>
+            </li>
+
+            <li>
+                <a
+                    href="../index.html#portfolio"
+                    data-fr="Portfolio"
+                    data-en="Portfolio"
+                    data-ar="المشاريع">
+                    Portfolio
+                </a>
+            </li>
+
+            <li>
+                <a
+                    href="../index.html#contact"
+                    data-fr="Contact"
+                    data-en="Contact"
+                    data-ar="اتصل بنا">
+                    Contact
+                </a>
+            </li>
+
+        </ul>
+
+
+        <div class="language-switcher">
+
+            <button
+                class="lang-btn active"
+                data-lang="fr">
+                FR
+            </button>
+
+            <button
+                class="lang-btn"
+                data-lang="en">
+                EN
+            </button>
+
+            <button
+                class="lang-btn"
+                data-lang="ar">
+                العربية
+            </button>
+
+        </div>
+
+    </div>
+
+</nav>
+
+
+<!-- =========================
+     HERO
+========================== -->
+
+<header class="hero">
+
+    <div class="hero-content">
+
+        <h1
+            data-fr="MedRDV Mobile"
+            data-en="MedRDV Mobile"
+            data-ar="MedRDV Mobile">
+            MedRDV Mobile
+        </h1>
+
+        <p
+            data-fr="Solution moderne de gestion des rendez-vous médicaux et de suivi des patients."
+            data-en="Modern solution for managing medical appointments and patient follow-up."
+            data-ar="حل حديث لإدارة المواعيد الطبية ومتابعة المرضى.">
+            Solution moderne de gestion des rendez-vous
+            médicaux et de suivi des patients.
+        </p>
+
+        <a
+            href="#services"
+            class="hero-button"
+            data-fr="Découvrir l'application"
+            data-en="Discover the application"
+            data-ar="اكتشف التطبيق">
+            Découvrir l'application
+        </a>
+
+    </div>
+
+</header>
+
+
+<!-- =========================
+     DESCRIPTION
+========================== -->
+
+<section class="description">
+
+    <h2
+        data-fr="Description"
+        data-en="Description"
+        data-ar="الوصف">
+        Description
+    </h2>
+
+
+    <p
+        data-fr="MedRDV Mobile est une solution professionnelle destinée aux médecins, cabinets médicaux et établissements de santé."
+        data-en="MedRDV Mobile is a professional solution designed for doctors, medical practices and healthcare facilities."
+        data-ar="MedRDV Mobile هو حل احترافي مخصص للأطباء والعيادات الطبية والمؤسسات الصحية.">
+
+        <strong>MedRDV Mobile</strong>
+        est une solution professionnelle destinée
+        aux médecins, cabinets médicaux et établissements
+        de santé.
+
+    </p>
+
+    <br>
+
+    <p
+        data-fr="L'application permet de gérer facilement les rendez-vous, les patients, les consultations, les médecins et le suivi de l'activité médicale à partir d'une interface moderne et intuitive."
+        data-en="The application makes it easy to manage appointments, patients, consultations, doctors and medical activity through a modern and intuitive interface."
+        data-ar="يسمح التطبيق بإدارة المواعيد والمرضى والاستشارات والأطباء ومتابعة النشاط الطبي بسهولة من خلال واجهة حديثة وسهلة الاستخدام.">
+
+        L'application permet de gérer facilement les
+        rendez-vous, les patients, les consultations,
+        les médecins et le suivi de l'activité médicale
+        à partir d'une interface moderne et intuitive.
+
+    </p>
+
+</section>
+
+
+<!-- =========================
+     FEATURES
+========================== -->
+
+<section
+    class="features"
+    id="services">
+
+    <h2
+        data-fr="Fonctionnalités"
+        data-en="Features"
+        data-ar="الميزات">
+        Fonctionnalités
+    </h2>
+
+
+    <div class="features-grid">
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                📅
+            </div>
+
+            <h3
+                data-fr="Rendez-vous"
+                data-en="Appointments"
+                data-ar="المواعيد">
+                Rendez-vous
+            </h3>
+
+            <p
+                data-fr="Gestion complète des rendez-vous médicaux."
+                data-en="Complete management of medical appointments."
+                data-ar="إدارة كاملة للمواعيد الطبية.">
+                Gestion complète des rendez-vous médicaux.
+            </p>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                👨‍⚕️
+            </div>
+
+            <h3
+                data-fr="Médecins"
+                data-en="Doctors"
+                data-ar="الأطباء">
+                Médecins
+            </h3>
+
+            <p
+                data-fr="Gestion des médecins et de leurs disponibilités."
+                data-en="Management of doctors and their availability."
+                data-ar="إدارة الأطباء ومواعيد توفرهم.">
+                Gestion des médecins et de leurs disponibilités.
+            </p>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                👥
+            </div>
+
+            <h3
+                data-fr="Patients"
+                data-en="Patients"
+                data-ar="المرضى">
+                Patients
+            </h3>
+
+            <p
+                data-fr="Gestion des informations et du dossier des patients."
+                data-en="Management of patient information and records."
+                data-ar="إدارة معلومات وملفات المرضى.">
+                Gestion des informations et du dossier des patients.
+            </p>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                🏥
+            </div>
+
+            <h3
+                data-fr="Spécialités"
+                data-en="Specialties"
+                data-ar="التخصصات">
+                Spécialités
+            </h3>
+
+            <p
+                data-fr="Organisation des médecins par spécialité médicale."
+                data-en="Organization of doctors by medical specialty."
+                data-ar="تنظيم الأطباء حسب التخصص الطبي.">
+                Organisation des médecins par spécialité médicale.
+            </p>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                🔔
+            </div>
+
+            <h3
+                data-fr="Notifications"
+                data-en="Notifications"
+                data-ar="الإشعارات">
+                Notifications
+            </h3>
+
+            <p
+                data-fr="Rappels et notifications pour les rendez-vous."
+                data-en="Reminders and notifications for appointments."
+                data-ar="تذكيرات وإشعارات خاصة بالمواعيد.">
+                Rappels et notifications pour les rendez-vous.
+            </p>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                📊
+            </div>
+
+            <h3
+                data-fr="Statistiques"
+                data-en="Statistics"
+                data-ar="الإحصائيات">
+                Statistiques
+            </h3>
+
+            <p
+                data-fr="Tableau de bord et statistiques de l'activité."
+                data-en="Dashboard and activity statistics."
+                data-ar="لوحة تحكم وإحصائيات النشاط.">
+                Tableau de bord et statistiques de l'activité.
+            </p>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                🔐
+            </div>
+
+            <h3
+                data-fr="Sécurité"
+                data-en="Security"
+                data-ar="الأمان">
+                Sécurité
+            </h3>
+
+            <p
+                data-fr="Authentification sécurisée et gestion des utilisateurs."
+                data-en="Secure authentication and user management."
+                data-ar="مصادقة آمنة وإدارة المستخدمين.">
+                Authentification sécurisée et gestion des utilisateurs.
+            </p>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                📱
+            </div>
+
+            <h3
+                data-fr="Application Mobile"
+                data-en="Mobile Application"
+                data-ar="تطبيق الهاتف المحمول">
+                Application Mobile
+            </h3>
+
+            <p
+                data-fr="Interface adaptée aux smartphones et tablettes."
+                data-en="Interface adapted for smartphones and tablets."
+                data-ar="واجهة مناسبة للهواتف الذكية والأجهزة اللوحية.">
+                Interface adaptée aux smartphones et tablettes.
+            </p>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     SCREENSHOTS
+========================== -->
+
+<section
+    class="screenshots"
+    id="screenshots">
+
+    <h2
+        data-fr="Captures d'écran"
+        data-en="Screenshots"
+        data-ar="لقطات الشاشة">
+        Captures d'écran
+    </h2>
+
+
+    <div class="screenshots-grid">
+
+
+        <div class="screenshot-card">
+
+            <img
+                src="../screenshots/medrdv.png"
+                alt="MedRDV Mobile">
+
+            <div
+                class="screenshot-title"
+                data-fr="Application MedRDV Mobile"
+                data-en="MedRDV Mobile Application"
+                data-ar="تطبيق MedRDV Mobile">
+
+                Application MedRDV Mobile
+
+            </div>
+
+        </div>
+
+
+        <div class="screenshot-card">
+
+            <img
+                src="../screenshots/medrdv-dashboard.png"
+                alt="MedRDV Dashboard">
+
+            <div
+                class="screenshot-title"
+                data-fr="Gestion des rendez-vous"
+                data-en="Appointment Management"
+                data-ar="إدارة المواعيد">
+
+                Gestion des rendez-vous
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     ADVANTAGES
+========================== -->
+
+<section class="advantages">
+
+    <h2
+        data-fr="Pourquoi MedRDV Mobile ?"
+        data-en="Why MedRDV Mobile?"
+        data-ar="لماذا MedRDV Mobile؟">
+
+        Pourquoi MedRDV Mobile ?
+
+    </h2>
+
+
+    <ul class="advantages-list">
+
+        <li
+            data-fr="Interface moderne et facile à utiliser"
+            data-en="Modern and easy-to-use interface"
+            data-ar="واجهة حديثة وسهلة الاستخدام">
+            Interface moderne et facile à utiliser
+        </li>
+
+        <li
+            data-fr="Gestion rapide des rendez-vous"
+            data-en="Fast appointment management"
+            data-ar="إدارة سريعة للمواعيد">
+            Gestion rapide des rendez-vous
+        </li>
+
+        <li
+            data-fr="Organisation efficace des patients"
+            data-en="Efficient patient organization"
+            data-ar="تنظيم فعال للمرضى">
+            Organisation efficace des patients
+        </li>
+
+        <li
+            data-fr="Gestion des médecins et spécialités"
+            data-en="Doctors and specialties management"
+            data-ar="إدارة الأطباء والتخصصات">
+            Gestion des médecins et spécialités
+        </li>
+
+        <li
+            data-fr="Réduction des rendez-vous oubliés"
+            data-en="Reduction of missed appointments"
+            data-ar="تقليل المواعيد المنسية">
+            Réduction des rendez-vous oubliés
+        </li>
+
+        <li
+            data-fr="Tableau de bord professionnel"
+            data-en="Professional dashboard"
+            data-ar="لوحة تحكم احترافية">
+            Tableau de bord professionnel
+        </li>
+
+        <li
+            data-fr="Compatible avec les appareils mobiles"
+            data-en="Compatible with mobile devices"
+            data-ar="متوافق مع الأجهزة المحمولة">
+            Compatible avec les appareils mobiles
+        </li>
+
+        <li
+            data-fr="Solution adaptée aux cabinets médicaux"
+            data-en="Solution suitable for medical practices"
+            data-ar="حل مناسب للعيادات الطبية">
+            Solution adaptée aux cabinets médicaux
+        </li>
+
+    </ul>
+
+</section>
+
+
+<!-- =========================
+     CONTACT
+========================== -->
+
+<section
+    class="contact"
+    id="contact">
+
+    <h2
+        data-fr="Vous êtes intéressé ?"
+        data-en="Are you interested?"
+        data-ar="هل أنت مهتم؟">
+
+        Vous êtes intéressé ?
+
+    </h2>
+
+
+    <p
+        data-fr="Contactez Nabil Apps pour obtenir plus d'informations sur MedRDV Mobile."
+        data-en="Contact Nabil Apps for more information about MedRDV Mobile."
+        data-ar="تواصل مع Nabil Apps للحصول على مزيد من المعلومات حول MedRDV Mobile.">
+
+        Contactez Nabil Apps pour obtenir plus
+        d'informations sur MedRDV Mobile.
+
+    </p>
+
+
+    <a
+        href="mailto:nabilapps@gmail.com"
+        class="contact-button"
+        data-fr="Nous contacter"
+        data-en="Contact us"
+        data-ar="اتصل بنا">
+
+        Nous contacter
+
+    </a>
+
+</section>
+
+
+<!-- =========================
+     FOOTER
+========================== -->
+
+<footer>
+
+    <p
+        data-fr="© 2026 Nabil Apps — MedRDV Mobile"
+        data-en="© 2026 Nabil Apps — MedRDV Mobile"
+        data-ar="© 2026 Nabil Apps — MedRDV Mobile">
+
+        © 2026 Nabil Apps — MedRDV Mobile
+
+    </p>
+
+
+    <p
+        data-fr="Développé par Nabil Apps"
+        data-en="Developed by Nabil Apps"
+        data-ar="تم التطوير بواسطة Nabil Apps">
+
+        Développé par Nabil Apps
+
+    </p>
+
+</footer>
+
+
+<!-- =========================
+     LANGUAGE SCRIPT
+========================== -->
+
+<script>
+
+    const langButtons =
+        document.querySelectorAll(".lang-btn");
+
+    const translatable =
+        document.querySelectorAll("[data-fr]");
+
+
+    function changeLanguage(lang) {
+
+        translatable.forEach(element => {
+
+            const text =
+                element.getAttribute("data-" + lang);
+
+            if (text) {
+                element.textContent = text;
+            }
+
+        });
+
+
+        document.documentElement.lang = lang;
+
+
+        if (lang === "ar") {
+
+            document.documentElement.dir = "rtl";
+
+        } else {
+
+            document.documentElement.dir = "ltr";
+
+        }
+
+
+        langButtons.forEach(button => {
+
+            button.classList.remove("active");
+
+            if (
+                button.getAttribute("data-lang")
+                === lang
+            ) {
+
+                button.classList.add("active");
+
+            }
+
+        });
+
+
+        localStorage.setItem(
+            "nabilAppsLanguage",
+            lang
+        );
+
+    }
+
+
+    langButtons.forEach(button => {
+
+        button.addEventListener(
+            "click",
+            function() {
+
+                const lang =
+                    this.getAttribute("data-lang");
+
+                changeLanguage(lang);
+
+            }
+        );
+
+    });
+
+
+    const savedLanguage =
+        localStorage.getItem(
+            "nabilAppsLanguage"
+        );
+
+
+    if (savedLanguage) {
+
+        changeLanguage(savedLanguage);
+
+    } else {
+
+        changeLanguage("fr");
+
+    }
+
+</script>
+
+
+</body>
+</html>

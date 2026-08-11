@@ -1,0 +1,1243 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>G_Sweet - Nabil Apps</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f8f5f2;
+            color: #3d2b24;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* =========================
+           HEADER
+        ========================== */
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+
+            background: #9b5435;
+            color: white;
+
+            padding: 18px 5%;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            box-shadow:
+                0 3px 15px rgba(0,0,0,0.15);
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 800;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 28px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            opacity: 0.75;
+        }
+
+        /* =========================
+           HERO
+        ========================== */
+
+        .hero {
+            background:
+                linear-gradient(
+                    135deg,
+                    #8f4b30,
+                    #c88a62
+                );
+
+            color: white;
+            text-align: center;
+
+            padding: 90px 20px;
+        }
+
+        .hero h1 {
+            font-size: 60px;
+            margin-bottom: 15px;
+            font-weight: 800;
+        }
+
+        .hero p {
+            font-size: 22px;
+            max-width: 850px;
+            margin: auto;
+        }
+
+        /* =========================
+           CONTAINER
+        ========================== */
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        section {
+            padding: 65px 0;
+        }
+
+        h2 {
+            color: #9b5435;
+            font-size: 38px;
+            margin-bottom: 25px;
+        }
+
+        /* =========================
+           DESCRIPTION
+        ========================== */
+
+        .description {
+            background: white;
+
+            padding: 32px;
+
+            border-radius: 18px;
+
+            box-shadow:
+                0 8px 25px rgba(70,40,25,0.08);
+
+            font-size: 19px;
+
+            color: #65534b;
+        }
+
+        .description strong {
+            color: #9b5435;
+        }
+
+        /* =========================
+           FEATURES
+        ========================== */
+
+        .features {
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 20px;
+        }
+
+        .feature {
+            background: white;
+
+            padding: 28px 20px;
+
+            border-radius: 18px;
+
+            text-align: center;
+
+            box-shadow:
+                0 8px 25px rgba(70,40,25,0.08);
+
+            transition: 0.25s;
+        }
+
+        .feature:hover {
+            transform: translateY(-6px);
+
+            box-shadow:
+                0 15px 30px rgba(70,40,25,0.14);
+        }
+
+        .icon {
+            font-size: 42px;
+            margin-bottom: 12px;
+        }
+
+        .feature h3 {
+            color: #9b5435;
+            margin-bottom: 8px;
+            font-size: 20px;
+        }
+
+        .feature p {
+            color: #6d5a52;
+        }
+
+        /* =========================
+           SCREENSHOTS
+        ========================== */
+
+        .screenshots {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 30px;
+        }
+
+        .screenshot-card {
+            background: white;
+
+            border-radius: 20px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 10px 30px rgba(60,35,25,0.12);
+
+            transition: 0.3s;
+        }
+
+        .screenshot-card:hover {
+            transform: translateY(-5px);
+
+            box-shadow:
+                0 15px 35px rgba(60,35,25,0.18);
+        }
+
+        .screenshot-card img {
+            width: 100%;
+
+            height: 420px;
+
+            object-fit: cover;
+
+            object-position: center;
+
+            display: block;
+
+            background: #f7f2ed;
+        }
+
+        .caption {
+            padding: 18px 22px;
+
+            font-size: 20px;
+
+            font-weight: 700;
+
+            color: #3d2b24;
+        }
+
+        /* =========================
+           BACK BUTTON
+        ========================== */
+
+        .back {
+            text-align: center;
+            margin-top: 35px;
+        }
+
+        .back a {
+            display: inline-block;
+
+            background: #9b5435;
+
+            color: white;
+
+            padding: 14px 30px;
+
+            border-radius: 30px;
+
+            text-decoration: none;
+
+            font-weight: 700;
+
+            transition: 0.3s;
+        }
+
+        .back a:hover {
+            background: #7d422b;
+            transform: translateY(-2px);
+        }
+
+        /* =========================
+           FOOTER
+        ========================== */
+
+        footer {
+            background: #9b5435;
+
+            color: white;
+
+            text-align: center;
+
+            padding: 30px;
+
+            margin-top: 30px;
+        }
+
+        footer a {
+            color: white;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* =========================
+           RTL ARABIC
+        ========================== */
+
+        body.rtl {
+            direction: rtl;
+        }
+
+        body.rtl header {
+            direction: rtl;
+        }
+
+        body.rtl nav a {
+            margin-left: 0;
+            margin-right: 28px;
+        }
+
+        body.rtl .hero {
+            direction: rtl;
+        }
+
+        body.rtl .description {
+            text-align: right;
+        }
+
+        body.rtl .feature {
+            direction: rtl;
+        }
+
+        body.rtl .caption {
+            text-align: right;
+        }
+
+        body.rtl footer {
+            direction: rtl;
+        }
+
+        /* =========================
+           TABLET
+        ========================== */
+
+        @media (max-width: 900px) {
+
+            .features {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            .screenshots {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 46px;
+            }
+
+        }
+
+        /* =========================
+           MOBILE
+        ========================== */
+
+        @media (max-width: 600px) {
+
+            header {
+                flex-direction: column;
+                gap: 12px;
+                padding: 15px;
+            }
+
+            .logo {
+                font-size: 25px;
+            }
+
+            nav {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            nav a {
+                margin: 0 7px;
+                font-size: 14px;
+            }
+
+            body.rtl nav a {
+                margin-left: 7px;
+                margin-right: 7px;
+            }
+
+            .hero {
+                padding: 60px 15px;
+            }
+
+            .hero h1 {
+                font-size: 38px;
+            }
+
+            .hero p {
+                font-size: 18px;
+            }
+
+            section {
+                padding: 45px 0;
+            }
+
+            h2 {
+                font-size: 32px;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+            .screenshots {
+                grid-template-columns: 1fr;
+            }
+
+            .screenshot-card img {
+                height: auto;
+                max-height: 650px;
+
+                object-fit: contain;
+
+                background: #f7f2ed;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header>
+
+    <div class="logo">
+        Nabil Apps
+    </div>
+
+    <nav>
+
+        <a href="../index.html"
+           data-i18n="navHome">
+            Accueil
+        </a>
+
+        <a href="../index.html#services"
+           data-i18n="navServices">
+            Services
+        </a>
+
+        <a href="../index.html#portfolio"
+           data-i18n="navPortfolio">
+            Portfolio
+        </a>
+
+        <a href="../index.html#contact"
+           data-i18n="navContact">
+            Contact
+        </a>
+
+    </nav>
+
+</header>
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section class="hero">
+
+    <div class="container">
+
+        <h1 data-i18n="heroTitle">
+            G_Sweet
+        </h1>
+
+        <p data-i18n="heroText">
+
+            Solution professionnelle de gestion
+            pour pâtisseries, commandes, clients,
+            produits, stock et ventes.
+
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     DESCRIPTION
+===================================================== -->
+
+<section>
+
+    <div class="container">
+
+        <h2 data-i18n="descriptionTitle">
+            Description
+        </h2>
+
+        <div class="description">
+
+            <p data-i18n-html="description">
+
+                <strong>G_Sweet</strong>
+                est une application moderne conçue
+                pour les pâtisseries et commerces
+                de produits sucrés.
+
+                Elle permet de centraliser la gestion
+                des commandes, des clients, des produits,
+                du stock, des livraisons et de la
+                facturation dans une interface simple,
+                moderne et professionnelle.
+
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     FEATURES
+===================================================== -->
+
+<section>
+
+    <div class="container">
+
+        <h2 data-i18n="featuresTitle">
+            Fonctionnalités
+        </h2>
+
+        <div class="features">
+
+
+            <div class="feature">
+
+                <div class="icon">
+                    🎂
+                </div>
+
+                <h3 data-i18n="product">
+                    Produits
+                </h3>
+
+                <p data-i18n="productText">
+                    Gestion des gâteaux,
+                    pâtisseries et produits.
+                </p>
+
+            </div>
+
+
+            <div class="feature">
+
+                <div class="icon">
+                    🧾
+                </div>
+
+                <h3 data-i18n="orders">
+                    Commandes
+                </h3>
+
+                <p data-i18n="ordersText">
+                    Gestion et suivi des
+                    commandes clients.
+                </p>
+
+            </div>
+
+
+            <div class="feature">
+
+                <div class="icon">
+                    👥
+                </div>
+
+                <h3 data-i18n="clients">
+                    Clients
+                </h3>
+
+                <p data-i18n="clientsText">
+                    Gestion complète des
+                    clients et historiques.
+                </p>
+
+            </div>
+
+
+            <div class="feature">
+
+                <div class="icon">
+                    📅
+                </div>
+
+                <h3 data-i18n="agenda">
+                    Agenda
+                </h3>
+
+                <p data-i18n="agendaText">
+                    Gestion des rendez-vous
+                    et livraisons.
+                </p>
+
+            </div>
+
+
+            <div class="feature">
+
+                <div class="icon">
+                    📦
+                </div>
+
+                <h3 data-i18n="stock">
+                    Stock
+                </h3>
+
+                <p data-i18n="stockText">
+                    Suivi des matières premières
+                    et produits disponibles.
+                </p>
+
+            </div>
+
+
+            <div class="feature">
+
+                <div class="icon">
+                    💰
+                </div>
+
+                <h3 data-i18n="sales">
+                    Ventes
+                </h3>
+
+                <p data-i18n="salesText">
+                    Suivi des ventes,
+                    recettes et paiements.
+                </p>
+
+            </div>
+
+
+            <div class="feature">
+
+                <div class="icon">
+                    📊
+                </div>
+
+                <h3 data-i18n="statistics">
+                    Statistiques
+                </h3>
+
+                <p data-i18n="statisticsText">
+                    Rapports et statistiques
+                    de l'activité.
+                </p>
+
+            </div>
+
+
+            <div class="feature">
+
+                <div class="icon">
+                    🔐
+                </div>
+
+                <h3 data-i18n="security">
+                    Connexion sécurisée
+                </h3>
+
+                <p data-i18n="securityText">
+                    Accès sécurisé réservé
+                    aux utilisateurs autorisés.
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     SCREENSHOTS
+===================================================== -->
+
+<section>
+
+    <div class="container">
+
+        <h2 data-i18n="screenshotsTitle">
+            Captures d'écran
+        </h2>
+
+        <div class="screenshots">
+
+
+            <!-- IMAGE LOGIN - CONSERVÉE -->
+
+            <div class="screenshot-card">
+
+                <img
+                    src="../screenshots/patisserie-login.png"
+                    alt="G_Sweet"
+                >
+
+                <div class="caption"
+                     data-i18n="login">
+                    Écran de connexion
+                </div>
+
+            </div>
+
+
+            <!-- DASHBOARD À AJOUTER PLUS TARD -->
+
+            <!--
+
+            <div class="screenshot-card">
+
+                <img
+                    src="../images/patisserie-dashboard.png"
+                    alt="G_Sweet Dashboard"
+                >
+
+                <div class="caption"
+                     data-i18n="dashboard">
+                    Tableau de bord
+                </div>
+
+            </div>
+
+            -->
+
+
+        </div>
+
+
+        <!-- RETOUR -->
+
+        <div class="back">
+
+            <a href="../index.html#portfolio"
+               data-i18n="back">
+                ← Retour aux projets
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+    <p data-i18n="footer">
+        © 2026 Nabil Apps — G_Sweet
+    </p>
+
+    <p style="margin-top:8px;">
+
+        <span data-i18n="developedBy">
+            Développé par
+        </span>
+
+        <a href="../index.html">
+
+            <strong>
+                Nabil Apps
+            </strong>
+
+        </a>
+
+    </p>
+
+</footer>
+
+
+<!-- =====================================================
+     LANGUAGE SYSTEM
+===================================================== -->
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+
+    /* =================================================
+       TRANSLATIONS
+    ================================================= */
+
+    const translations = {
+
+        fr: {
+
+            navHome:
+                "Accueil",
+
+            navServices:
+                "Services",
+
+            navPortfolio:
+                "Portfolio",
+
+            navContact:
+                "Contact",
+
+            heroTitle:
+                "G_Sweet",
+
+            heroText:
+                "Solution professionnelle de gestion pour pâtisseries, commandes, clients, produits, stock et ventes.",
+
+            descriptionTitle:
+                "Description",
+
+            description:
+                "<strong>G_Sweet</strong> est une application moderne conçue pour les pâtisseries et commerces de produits sucrés. Elle permet de centraliser la gestion des commandes, des clients, des produits, du stock, des livraisons et de la facturation dans une interface simple, moderne et professionnelle.",
+
+            featuresTitle:
+                "Fonctionnalités",
+
+            product:
+                "Produits",
+
+            productText:
+                "Gestion des gâteaux, pâtisseries et produits.",
+
+            orders:
+                "Commandes",
+
+            ordersText:
+                "Gestion et suivi des commandes clients.",
+
+            clients:
+                "Clients",
+
+            clientsText:
+                "Gestion complète des clients et historiques.",
+
+            agenda:
+                "Agenda",
+
+            agendaText:
+                "Gestion des rendez-vous et livraisons.",
+
+            stock:
+                "Stock",
+
+            stockText:
+                "Suivi des matières premières et produits disponibles.",
+
+            sales:
+                "Ventes",
+
+            salesText:
+                "Suivi des ventes, recettes et paiements.",
+
+            statistics:
+                "Statistiques",
+
+            statisticsText:
+                "Rapports et statistiques de l'activité.",
+
+            security:
+                "Connexion sécurisée",
+
+            securityText:
+                "Accès sécurisé réservé aux utilisateurs autorisés.",
+
+            screenshotsTitle:
+                "Captures d'écran",
+
+            login:
+                "Écran de connexion",
+
+            dashboard:
+                "Tableau de bord",
+
+            back:
+                "← Retour aux projets",
+
+            footer:
+                "© 2026 Nabil Apps — G_Sweet",
+
+            developedBy:
+                "Développé par"
+
+        },
+
+
+        /* =============================================
+           ENGLISH
+        ============================================= */
+
+        en: {
+
+            navHome:
+                "Home",
+
+            navServices:
+                "Services",
+
+            navPortfolio:
+                "Portfolio",
+
+            navContact:
+                "Contact",
+
+            heroTitle:
+                "G_Sweet",
+
+            heroText:
+                "Professional management solution for bakeries, orders, customers, products, inventory and sales.",
+
+            descriptionTitle:
+                "Description",
+
+            description:
+                "<strong>G_Sweet</strong> is a modern application designed for bakeries and sweet-product businesses. It centralizes the management of orders, customers, products, inventory, deliveries and invoicing in a simple, modern and professional interface.",
+
+            featuresTitle:
+                "Features",
+
+            product:
+                "Products",
+
+            productText:
+                "Management of cakes, pastries and products.",
+
+            orders:
+                "Orders",
+
+            ordersText:
+                "Management and tracking of customer orders.",
+
+            clients:
+                "Customers",
+
+            clientsText:
+                "Complete customer and history management.",
+
+            agenda:
+                "Schedule",
+
+            agendaText:
+                "Management of appointments and deliveries.",
+
+            stock:
+                "Inventory",
+
+            stockText:
+                "Tracking of raw materials and available products.",
+
+            sales:
+                "Sales",
+
+            salesText:
+                "Tracking of sales, revenue and payments.",
+
+            statistics:
+                "Statistics",
+
+            statisticsText:
+                "Business reports and statistics.",
+
+            security:
+                "Secure Login",
+
+            securityText:
+                "Secure access for authorized users only.",
+
+            screenshotsTitle:
+                "Screenshots",
+
+            login:
+                "Login Screen",
+
+            dashboard:
+                "Dashboard",
+
+            back:
+                "← Back to projects",
+
+            footer:
+                "© 2026 Nabil Apps — G_Sweet",
+
+            developedBy:
+                "Developed by"
+
+        },
+
+
+        /* =============================================
+           ARABIC
+        ============================================= */
+
+        ar: {
+
+            navHome:
+                "الرئيسية",
+
+            navServices:
+                "الخدمات",
+
+            navPortfolio:
+                "أعمالنا",
+
+            navContact:
+                "اتصل بنا",
+
+            heroTitle:
+                "G_Sweet",
+
+            heroText:
+                "حل احترافي لتسيير محلات الحلويات والطلبات والزبائن والمنتجات والمخزون والمبيعات.",
+
+            descriptionTitle:
+                "الوصف",
+
+            description:
+                "<strong>G_Sweet</strong> هو تطبيق عصري مصمم لمحلات الحلويات والمشاريع المتخصصة في المنتجات الحلوة. يسمح بتجميع وتسيير الطلبات والزبائن والمنتجات والمخزون والتوصيل والفوترة في واجهة بسيطة وعصرية واحترافية.",
+
+            featuresTitle:
+                "الوظائف",
+
+            product:
+                "المنتجات",
+
+            productText:
+                "تسيير الكعك والحلويات والمنتجات.",
+
+            orders:
+                "الطلبات",
+
+            ordersText:
+                "تسيير ومتابعة طلبات الزبائن.",
+
+            clients:
+                "الزبائن",
+
+            clientsText:
+                "تسيير كامل للزبائن وسجل الطلبات.",
+
+            agenda:
+                "المواعيد",
+
+            agendaText:
+                "تسيير المواعيد وعمليات التوصيل.",
+
+            stock:
+                "المخزون",
+
+            stockText:
+                "متابعة المواد الأولية والمنتجات المتوفرة.",
+
+            sales:
+                "المبيعات",
+
+            salesText:
+                "متابعة المبيعات والمداخيل والمدفوعات.",
+
+            statistics:
+                "الإحصائيات",
+
+            statisticsText:
+                "تقارير وإحصائيات نشاط المحل.",
+
+            security:
+                "تسجيل دخول آمن",
+
+            securityText:
+                "دخول آمن ومخصص للمستخدمين المصرح لهم.",
+
+            screenshotsTitle:
+                "صور التطبيق",
+
+            login:
+                "واجهة تسجيل الدخول",
+
+            dashboard:
+                "لوحة التحكم",
+
+            back:
+                "← العودة إلى المشاريع",
+
+            footer:
+                "© 2026 Nabil Apps — G_Sweet",
+
+            developedBy:
+                "تم التطوير بواسطة"
+
+        }
+
+    };
+
+
+    /* =================================================
+       GET SAVED LANGUAGE
+    ================================================= */
+
+    let lang =
+        localStorage.getItem(
+            "nabilAppsLanguage"
+        ) || "fr";
+
+
+    if (!translations[lang]) {
+        lang = "fr";
+    }
+
+
+    const t =
+        translations[lang];
+
+
+    /* =================================================
+       LANGUAGE + DIRECTION
+    ================================================= */
+
+    document.documentElement.lang =
+        lang;
+
+
+    if (lang === "ar") {
+
+        document.documentElement.dir =
+            "rtl";
+
+        document.body.classList.add(
+            "rtl"
+        );
+
+    } else {
+
+        document.documentElement.dir =
+            "ltr";
+
+        document.body.classList.remove(
+            "rtl"
+        );
+
+    }
+
+
+    /* =================================================
+       NORMAL TEXT
+    ================================================= */
+
+    document
+        .querySelectorAll("[data-i18n]")
+        .forEach(function (element) {
+
+            const key =
+                element.getAttribute(
+                    "data-i18n"
+                );
+
+            if (t[key] !== undefined) {
+
+                element.textContent =
+                    t[key];
+
+            }
+
+        });
+
+
+    /* =================================================
+       HTML TEXT
+    ================================================= */
+
+    document
+        .querySelectorAll("[data-i18n-html]")
+        .forEach(function (element) {
+
+            const key =
+                element.getAttribute(
+                    "data-i18n-html"
+                );
+
+            if (t[key] !== undefined) {
+
+                element.innerHTML =
+                    t[key];
+
+            }
+
+        });
+
+
+    /* =================================================
+       PAGE TITLE
+    ================================================= */
+
+    document.title =
+        "G_Sweet - Nabil Apps";
+
+
+    console.log(
+        "Nabil Apps Project Language:",
+        lang
+    );
+
+});
+
+</script>
+
+
+</body>
+</html>

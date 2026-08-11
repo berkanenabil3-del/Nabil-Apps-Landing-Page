@@ -1,0 +1,1234 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>G-Stock ERP | Nabil Apps</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f4f7fb;
+            color: #222;
+            line-height: 1.7;
+        }
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+
+            width: 100%;
+            min-height: 74px;
+
+            background: #1769e0;
+            color: white;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 5%;
+
+            box-shadow:
+                0 4px 15px rgba(0,0,0,.15);
+        }
+
+        .logo {
+            color: white;
+            text-decoration: none;
+
+            font-size: 30px;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+
+            gap: 30px;
+
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+
+            font-size: 17px;
+            font-weight: bold;
+
+            transition: .3s;
+        }
+
+        .nav-links a:hover {
+            color: #dceaff;
+        }
+
+        /* =========================
+           LANGUAGE
+        ========================= */
+
+        .language-buttons {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .language-buttons button {
+            border: 1px solid rgba(255,255,255,.8);
+
+            background: transparent;
+            color: white;
+
+            padding: 7px 13px;
+
+            border-radius: 20px;
+
+            cursor: pointer;
+
+            font-weight: bold;
+
+            transition: .3s;
+        }
+
+        .language-buttons button:hover,
+        .language-buttons button.active {
+            background: white;
+            color: #1769e0;
+        }
+
+        /* =========================
+           LANGUAGE CONTENT
+        ========================= */
+
+        [data-lang] {
+            display: none;
+        }
+
+        body.lang-ar [data-lang="ar"] {
+            display: block;
+        }
+
+        body.lang-en [data-lang="en"] {
+            display: block;
+        }
+
+        .inline-lang {
+            display: none;
+        }
+
+        body.lang-ar .inline-ar {
+            display: inline;
+        }
+
+        body.lang-en .inline-en {
+            display: inline;
+        }
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+            min-height: 390px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #0f5fff,
+                    #008cff
+                );
+
+            color: white;
+
+            display: flex;
+            flex-direction: column;
+
+            justify-content: center;
+            align-items: center;
+
+            text-align: center;
+
+            padding: 70px 20px;
+        }
+
+        .hero h1 {
+            font-size: 58px;
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+
+        .hero p {
+            font-size: 23px;
+            max-width: 850px;
+        }
+
+        /* =========================
+           CONTAINER
+        ========================= */
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+
+            margin: auto;
+        }
+
+        section {
+            padding: 65px 0;
+        }
+
+        /* =========================
+           PROJECT IMAGE
+        ========================= */
+
+        .project-image-box {
+            text-align: center;
+
+            padding-top: 60px;
+            padding-bottom: 20px;
+        }
+
+        .project-image {
+            width: 100%;
+            max-width: 1200px;
+
+            max-height: 650px;
+
+            object-fit: contain;
+
+            border-radius: 20px;
+
+            box-shadow:
+                0 15px 40px rgba(0,0,0,.18);
+
+            display: block;
+
+            margin: auto;
+
+            background: #eef3f9;
+        }
+
+        .image-caption {
+            margin-top: 15px;
+
+            color: #666;
+
+            font-size: 17px;
+        }
+
+        /* =========================
+           TITLES
+        ========================= */
+
+        .section-title {
+            color: #0f5fff;
+
+            font-size: 40px;
+
+            margin-bottom: 30px;
+        }
+
+        /* =========================
+           DESCRIPTION
+        ========================= */
+
+        .description {
+            background: white;
+
+            padding: 32px;
+
+            border-radius: 18px;
+
+            box-shadow:
+                0 8px 25px rgba(0,0,0,.07);
+
+            font-size: 20px;
+
+            color: #444;
+        }
+
+        .description strong {
+            color: #0f5fff;
+        }
+
+        .description p + p {
+            margin-top: 18px;
+        }
+
+        /* =========================
+           FEATURES
+        ========================= */
+
+        .features {
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 20px;
+        }
+
+        .feature-card {
+            background: white;
+
+            border-radius: 16px;
+
+            padding: 28px 20px;
+
+            min-height: 130px;
+
+            text-align: center;
+
+            box-shadow:
+                0 8px 25px rgba(0,0,0,.08);
+
+            transition: .3s;
+
+            font-size: 18px;
+
+            font-weight: bold;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-6px);
+
+            box-shadow:
+                0 14px 30px rgba(0,0,0,.13);
+        }
+
+        .feature-icon {
+            display: block;
+
+            font-size: 38px;
+
+            margin-bottom: 10px;
+        }
+
+        /* =========================
+           BACK BUTTON
+        ========================= */
+
+        .back-section {
+            text-align: center;
+
+            padding:
+                20px 0 70px;
+        }
+
+        .back-btn {
+            display: inline-block;
+
+            background: #0f5fff;
+
+            color: white;
+
+            text-decoration: none;
+
+            padding: 15px 35px;
+
+            border-radius: 50px;
+
+            font-size: 18px;
+
+            font-weight: bold;
+
+            transition: .3s;
+        }
+
+        .back-btn:hover {
+            background: #0049d4;
+
+            transform: translateY(-2px);
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            background: #0952c7;
+
+            color: white;
+
+            text-align: center;
+
+            padding: 30px 20px;
+
+            font-size: 17px;
+        }
+
+        footer p {
+            margin: 5px;
+        }
+
+        /* =========================
+           TABLET
+        ========================= */
+
+        @media (max-width: 900px) {
+
+            .features {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            .hero h1 {
+                font-size: 46px;
+            }
+
+            .hero p {
+                font-size: 20px;
+            }
+
+            .nav-links {
+                gap: 18px;
+            }
+
+        }
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 650px) {
+
+            .navbar {
+                height: auto;
+
+                padding: 18px 5%;
+
+                flex-direction: column;
+
+                gap: 15px;
+            }
+
+            .logo {
+                font-size: 27px;
+            }
+
+            .nav-links {
+                gap: 12px;
+
+                flex-wrap: wrap;
+
+                justify-content: center;
+            }
+
+            .nav-links a {
+                font-size: 14px;
+            }
+
+            .language-buttons button {
+                padding: 6px 11px;
+            }
+
+            .hero {
+                min-height: 330px;
+
+                padding: 55px 20px;
+            }
+
+            .hero h1 {
+                font-size: 38px;
+            }
+
+            .hero p {
+                font-size: 18px;
+            }
+
+            section {
+                padding: 45px 0;
+            }
+
+            .section-title {
+                font-size: 32px;
+            }
+
+            .description {
+                font-size: 18px;
+
+                padding: 22px;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+            .project-image {
+                width: 100%;
+
+                height: auto;
+
+                max-height: 650px;
+
+                object-fit: contain;
+
+                border-radius: 14px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body class="lang-ar">
+
+
+<!-- =========================
+     NAVBAR
+========================= -->
+
+<nav class="navbar">
+
+    <a
+        href="../index.html"
+        class="logo">
+
+        Nabil Apps
+
+    </a>
+
+
+    <ul class="nav-links">
+
+        <li>
+
+            <a href="../index.html">
+
+                <span class="inline-lang inline-ar">
+                    الرئيسية
+                </span>
+
+                <span class="inline-lang inline-en">
+                    Home
+                </span>
+
+            </a>
+
+        </li>
+
+
+        <li>
+
+            <a href="../index.html#services">
+
+                <span class="inline-lang inline-ar">
+                    الخدمات
+                </span>
+
+                <span class="inline-lang inline-en">
+                    Services
+                </span>
+
+            </a>
+
+        </li>
+
+
+        <li>
+
+            <a href="../index.html#portfolio">
+
+                <span class="inline-lang inline-ar">
+                    المشاريع
+                </span>
+
+                <span class="inline-lang inline-en">
+                    Portfolio
+                </span>
+
+            </a>
+
+        </li>
+
+
+        <li>
+
+            <a href="../index.html#contact">
+
+                <span class="inline-lang inline-ar">
+                    اتصل بنا
+                </span>
+
+                <span class="inline-lang inline-en">
+                    Contact
+                </span>
+
+            </a>
+
+        </li>
+
+
+        <li class="language-buttons">
+
+            <button
+                id="arBtn"
+                onclick="setLanguage('ar')">
+
+                العربية
+
+            </button>
+
+
+            <button
+                id="enBtn"
+                onclick="setLanguage('en')">
+
+                EN
+
+            </button>
+
+        </li>
+
+    </ul>
+
+</nav>
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<header class="hero">
+
+    <h1>
+        G-Stock ERP
+    </h1>
+
+
+    <p data-lang="ar">
+
+        حل احترافي ومتكامل لإدارة المخزون
+        والمبيعات والمشتريات والفوترة.
+
+    </p>
+
+
+    <p data-lang="en">
+
+        A professional and complete solution
+        for inventory, sales, purchases and invoicing.
+
+    </p>
+
+</header>
+
+
+<!-- =========================
+     MAIN
+========================= -->
+
+<main class="container">
+
+
+    <!-- =========================
+         IMAGE
+    ========================== -->
+
+    <div class="project-image-box">
+
+        <img
+            src="../images/gstock.png"
+            alt="G-Stock ERP"
+            class="project-image"
+        >
+
+
+        <p
+            class="image-caption"
+            data-lang="ar">
+
+            واجهة برنامج G-Stock ERP
+
+        </p>
+
+
+        <p
+            class="image-caption"
+            data-lang="en">
+
+            G-Stock ERP interface
+
+        </p>
+
+    </div>
+
+
+    <!-- =========================
+         DESCRIPTION AR
+    ========================== -->
+
+    <section data-lang="ar">
+
+        <h2 class="section-title">
+
+            وصف المشروع
+
+        </h2>
+
+
+        <div class="description">
+
+            <p>
+
+                <strong>G-Stock ERP</strong>
+                هو حل احترافي ومتكامل مخصص
+                للمؤسسات والمحلات والمتاجر لإدارة
+                العمليات التجارية والمخزون.
+
+            </p>
+
+
+            <p>
+
+                يسمح البرنامج بإدارة المنتجات،
+                والتصنيفات، والعملاء، والموردين،
+                والمبيعات، والمشتريات، والمخزون
+                والفواتير من خلال واجهة حديثة
+                وسهلة الاستخدام.
+
+            </p>
+
+
+            <p>
+
+                كما يوفر لوحة تحكم تساعد على متابعة
+                نشاط المؤسسة وعرض الإحصائيات والتقارير.
+
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         DESCRIPTION EN
+    ========================== -->
+
+    <section data-lang="en">
+
+        <h2 class="section-title">
+
+            Project Description
+
+        </h2>
+
+
+        <div class="description">
+
+            <p>
+
+                <strong>G-Stock ERP</strong>
+                is a professional and complete solution
+                designed for businesses, stores and shops
+                to manage their commercial operations
+                and inventory.
+
+            </p>
+
+
+            <p>
+
+                The application allows users to manage
+                products, categories, customers, suppliers,
+                sales, purchases, inventory and invoices
+                through a modern and easy-to-use interface.
+
+            </p>
+
+
+            <p>
+
+                It also provides a dashboard for monitoring
+                business activity and viewing statistics
+                and reports.
+
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         FEATURES AR
+    ========================== -->
+
+    <section data-lang="ar">
+
+        <h2 class="section-title">
+
+            أهم الوظائف
+
+        </h2>
+
+
+        <div class="features">
+
+
+            <div class="feature-card">
+
+                <span class="feature-icon">
+                    📦
+                </span>
+
+                إدارة المنتجات
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <span class="feature-icon">
+                    🗂️
+                </span>
+
+                إدارة التصنيفات
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <span class="feature-icon">
+                    👥
+                </span>
+
+                إدارة العملاء
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <span class="feature-icon">
+                    🏢
+                </span>
+
+                إدارة الموردين
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <span class="feature-icon">
+                    🛒
+                </span>
+
+                إدارة المبيعات
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <span class="feature-icon">
+                    🚚
+                </span>
+
+                إدارة المشتريات
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <span class="feature-icon">
+                    📊
+                </span>
+
+                إدارة المخزون
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <span class="feature-icon">
+                    🧾
+                </span>
+
+                الفوترة وإصدار PDF
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <span class="feature-icon">
+                    📈
+                </span>
+
+                الإحصائيات والتقارير
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <span class="feature-icon">
+                    🔐
+                </span>
+
+                نظام دخول آمن
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <span class="feature-icon">
+                    🔔
+                </span>
+
+                تنبيهات المخزون
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <span class="feature-icon">
+                    📋
+                </span>
+
+                لوحة تحكم
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         FEATURES EN
+    ========================== -->
+
+    <section data-lang="en">
+
+        <h2 class="section-title">
+
+            Main Features
+
+        </h2>
+
+
+        <div class="features">
+
+
+            <div class="feature-card">
+
+                <span class="feature-icon">
+                    📦
+                </span>
+
+                Product Management
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <span class="feature-icon">
+                    🗂️
+                </span>
+
+                Category Management
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <span class="feature-icon">
+                    👥
+                </span>
+
+                Customer Management
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <span class="feature-icon">
+                    🏢
+                </span>
+
+                Supplier Management
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <span class="feature-icon">
+                    🛒
+                </span>
+
+                Sales Management
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <span class="feature-icon">
+                    🚚
+                </span>
+
+                Purchase Management
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <span class="feature-icon">
+                    📊
+                </span>
+
+                Inventory Management
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <span class="feature-icon">
+                    🧾
+                </span>
+
+                PDF Invoicing
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <span class="feature-icon">
+                    📈
+                </span>
+
+                Statistics & Reports
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <span class="feature-icon">
+                    🔐
+                </span>
+
+                Secure Login
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <span class="feature-icon">
+                    🔔
+                </span>
+
+                Stock Alerts
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <span class="feature-icon">
+                    📋
+                </span>
+
+                Dashboard
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         BACK
+    ========================== -->
+
+    <div class="back-section">
+
+        <a
+            href="../index.html#portfolio"
+            class="back-btn">
+
+            <span class="inline-lang inline-ar">
+
+                ← العودة إلى المشاريع
+
+            </span>
+
+
+            <span class="inline-lang inline-en">
+
+                ← Back to Projects
+
+            </span>
+
+        </a>
+
+    </div>
+
+
+</main>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+    <p data-lang="ar">
+
+        © 2026 Nabil Apps — G-Stock ERP
+
+    </p>
+
+
+    <p data-lang="en">
+
+        © 2026 Nabil Apps — G-Stock ERP
+
+    </p>
+
+
+    <p data-lang="ar">
+
+        تم التطوير بواسطة Nabil Apps
+
+    </p>
+
+
+    <p data-lang="en">
+
+        Developed by Nabil Apps
+
+    </p>
+
+</footer>
+
+
+<!-- =========================
+     LANGUAGE SCRIPT
+========================= -->
+
+<script>
+
+    function setLanguage(lang) {
+
+        document.body.classList.remove(
+            "lang-ar",
+            "lang-en"
+        );
+
+        document.body.classList.add(
+            "lang-" + lang
+        );
+
+
+        document.documentElement.lang = lang;
+
+
+        if (lang === "ar") {
+
+            document.documentElement.dir = "rtl";
+
+            document.getElementById("arBtn")
+                .classList.add("active");
+
+            document.getElementById("enBtn")
+                .classList.remove("active");
+
+        }
+
+        else {
+
+            document.documentElement.dir = "ltr";
+
+            document.getElementById("enBtn")
+                .classList.add("active");
+
+            document.getElementById("arBtn")
+                .classList.remove("active");
+
+        }
+
+
+        localStorage.setItem(
+            "siteLanguage",
+            lang
+        );
+
+    }
+
+
+    document.addEventListener(
+        "DOMContentLoaded",
+        function() {
+
+            const savedLanguage =
+                localStorage.getItem(
+                    "siteLanguage"
+                );
+
+
+            if (savedLanguage === "en") {
+
+                setLanguage("en");
+
+            }
+
+            else {
+
+                setLanguage("ar");
+
+            }
+
+        }
+    );
+
+</script>
+
+
+</body>
+
+</html>

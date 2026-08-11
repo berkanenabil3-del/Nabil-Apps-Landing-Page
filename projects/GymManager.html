@@ -1,0 +1,1342 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>GymManager - Nabil Apps</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f4f7fb;
+            color: #222;
+            line-height: 1.6;
+            transition: 0.3s;
+        }
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        .navbar {
+
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+
+            width: 100%;
+            min-height: 74px;
+
+            background: #1769e0;
+            color: white;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 12px 5%;
+
+            box-shadow:
+                0 3px 15px rgba(0,0,0,0.15);
+
+        }
+
+        .logo {
+
+            font-size: 30px;
+            font-weight: bold;
+
+            color: white;
+            text-decoration: none;
+
+        }
+
+        .nav-right {
+
+            display: flex;
+            align-items: center;
+            gap: 25px;
+
+        }
+
+        .nav-links {
+
+            display: flex;
+            gap: 30px;
+
+            list-style: none;
+
+        }
+
+        .nav-links a {
+
+            color: white;
+            text-decoration: none;
+
+            font-size: 17px;
+            font-weight: bold;
+
+            transition: 0.3s;
+
+        }
+
+        .nav-links a:hover {
+
+            color: #dbeafe;
+
+        }
+
+        /* =========================
+           LANGUAGE SWITCHER
+        ========================= */
+
+        .language-switcher {
+
+            display: flex;
+            gap: 7px;
+        }
+
+        .lang-btn {
+
+            border: 1px solid rgba(255,255,255,0.7);
+
+            background: transparent;
+
+            color: white;
+
+            padding: 7px 12px;
+
+            border-radius: 20px;
+
+            cursor: pointer;
+
+            font-weight: bold;
+
+            transition: 0.3s;
+
+        }
+
+        .lang-btn:hover {
+
+            background: white;
+            color: #1769e0;
+
+        }
+
+        .lang-btn.active {
+
+            background: white;
+            color: #1769e0;
+
+        }
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+
+            min-height: 390px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #1769e0,
+                    #3b82f6
+                );
+
+            color: white;
+
+            display: flex;
+            flex-direction: column;
+
+            align-items: center;
+            justify-content: center;
+
+            text-align: center;
+
+            padding: 70px 20px;
+
+        }
+
+        .hero h1 {
+
+            font-size: 58px;
+            margin-bottom: 20px;
+
+        }
+
+        .hero p {
+
+            font-size: 24px;
+            max-width: 900px;
+
+        }
+
+        /* =========================
+           GENERAL
+        ========================= */
+
+        .container {
+
+            width: 90%;
+            max-width: 1200px;
+
+            margin: auto;
+
+        }
+
+        section {
+
+            padding: 70px 0;
+
+        }
+
+        .section-title {
+
+            color: #1769e0;
+
+            font-size: 42px;
+
+            margin-bottom: 35px;
+
+            text-align: left;
+
+        }
+
+        /* =========================
+           DESCRIPTION
+        ========================= */
+
+        .description {
+
+            font-size: 20px;
+
+            color: #333;
+
+            max-width: 1050px;
+
+        }
+
+        /* =========================
+           FEATURES
+        ========================= */
+
+        .features {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 20px;
+
+        }
+
+        .feature-card {
+
+            background: white;
+
+            border-radius: 15px;
+
+            padding: 28px 20px;
+
+            min-height: 120px;
+
+            display: flex;
+
+            align-items: center;
+
+            box-shadow:
+                0 8px 25px rgba(0,0,0,0.08);
+
+            font-size: 18px;
+
+            transition: 0.3s;
+
+        }
+
+        .feature-card:hover {
+
+            transform: translateY(-5px);
+
+            box-shadow:
+                0 12px 30px rgba(0,0,0,0.12);
+
+        }
+
+        .feature-icon {
+
+            font-size: 32px;
+
+            margin-right: 15px;
+
+        }
+
+        /* =========================
+           SCREENSHOTS
+        ========================= */
+
+        .screenshots {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 30px;
+
+        }
+
+        .screenshot-card {
+
+            background: white;
+
+            border-radius: 18px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 10px 30px rgba(0,0,0,0.12);
+
+            transition: 0.3s;
+
+        }
+
+        .screenshot-card:hover {
+
+            transform: translateY(-5px);
+
+        }
+
+        .screenshot-card img {
+
+            width: 100%;
+
+            height: 360px;
+
+            object-fit: cover;
+
+            display: block;
+
+        }
+
+        .screenshot-title {
+
+            padding: 16px 20px;
+
+            font-size: 20px;
+
+            font-weight: bold;
+
+            color: #222;
+
+        }
+
+        /* =========================
+           CONTACT
+        ========================= */
+
+        .contact-box {
+
+            background: #1769e0;
+
+            color: white;
+
+            border-radius: 20px;
+
+            padding: 45px;
+
+            text-align: center;
+
+        }
+
+        .contact-box h2 {
+
+            font-size: 34px;
+
+            margin-bottom: 15px;
+
+        }
+
+        .contact-box p {
+
+            font-size: 19px;
+
+            margin-bottom: 20px;
+
+        }
+
+        .contact-button {
+
+            display: inline-block;
+
+            background: white;
+
+            color: #1769e0;
+
+            padding: 13px 30px;
+
+            border-radius: 30px;
+
+            text-decoration: none;
+
+            font-weight: bold;
+
+            transition: 0.3s;
+
+        }
+
+        .contact-button:hover {
+
+            background: #eaf2ff;
+
+            transform: scale(1.05);
+
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+
+            background: #1769e0;
+
+            color: white;
+
+            text-align: center;
+
+            padding: 30px;
+
+            font-size: 17px;
+
+        }
+
+        /* =========================
+           ARABIC
+        ========================= */
+
+        body.rtl {
+
+            direction: rtl;
+
+        }
+
+        body.rtl .navbar {
+
+            direction: rtl;
+
+        }
+
+        body.rtl .nav-right {
+
+            flex-direction: row-reverse;
+
+        }
+
+        body.rtl .nav-links {
+
+            flex-direction: row-reverse;
+
+        }
+
+        body.rtl .section-title {
+
+            text-align: right;
+
+        }
+
+        body.rtl .description {
+
+            text-align: right;
+
+        }
+
+        body.rtl .feature-card {
+
+            flex-direction: row;
+
+        }
+
+        body.rtl .feature-icon {
+
+            margin-right: 0;
+            margin-left: 15px;
+
+        }
+
+        body.rtl .hero {
+
+            direction: rtl;
+
+        }
+
+        body.rtl footer {
+
+            direction: rtl;
+
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 900px) {
+
+            .features {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+
+            }
+
+            .screenshots {
+
+                grid-template-columns: 1fr;
+
+            }
+
+            .hero h1 {
+
+                font-size: 45px;
+
+            }
+
+            .hero p {
+
+                font-size: 20px;
+
+            }
+
+            .nav-right {
+
+                gap: 12px;
+
+            }
+
+            .nav-links {
+
+                gap: 15px;
+
+            }
+
+        }
+
+        @media (max-width: 650px) {
+
+            .navbar {
+
+                height: auto;
+
+                padding: 18px 5%;
+
+                flex-direction: column;
+
+                gap: 15px;
+
+            }
+
+            .nav-right {
+
+                flex-direction: column;
+
+            }
+
+            .nav-links {
+
+                gap: 15px;
+
+                flex-wrap: wrap;
+
+                justify-content: center;
+
+            }
+
+            .features {
+
+                grid-template-columns: 1fr;
+
+            }
+
+            .section-title {
+
+                font-size: 34px;
+
+            }
+
+            .hero h1 {
+
+                font-size: 38px;
+
+            }
+
+            .hero p {
+
+                font-size: 18px;
+
+            }
+
+            .screenshot-card img {
+
+                height: 250px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     NAVBAR
+========================== -->
+
+<nav class="navbar">
+
+    <a href="../index.html" class="logo">
+        Nabil Apps
+    </a>
+
+
+    <div class="nav-right">
+
+
+        <ul class="nav-links">
+
+            <li>
+                <a href="../index.html" data-i18n="home">
+                    Accueil
+                </a>
+            </li>
+
+            <li>
+                <a href="../index.html#services" data-i18n="services">
+                    Services
+                </a>
+            </li>
+
+            <li>
+                <a href="../index.html#portfolio" data-i18n="portfolio">
+                    Portfolio
+                </a>
+            </li>
+
+            <li>
+                <a href="../index.html#contact" data-i18n="contact">
+                    Contact
+                </a>
+            </li>
+
+        </ul>
+
+
+        <div class="language-switcher">
+
+            <button
+                class="lang-btn"
+                data-lang="fr">
+                FR
+            </button>
+
+            <button
+                class="lang-btn"
+                data-lang="en">
+                EN
+            </button>
+
+            <button
+                class="lang-btn"
+                data-lang="ar">
+                العربية
+            </button>
+
+        </div>
+
+
+    </div>
+
+</nav>
+
+
+<!-- =========================
+     HERO
+========================== -->
+
+<header class="hero">
+
+    <h1 data-i18n="title">
+        GymManager
+    </h1>
+
+    <p data-i18n="heroDescription">
+
+        Solution complète pour la gestion
+        des salles de sport, des abonnements,
+        des membres et des paiements.
+
+    </p>
+
+</header>
+
+
+<!-- =========================
+     DESCRIPTION
+========================== -->
+
+<section>
+
+    <div class="container">
+
+        <h2
+            class="section-title"
+            data-i18n="descriptionTitle">
+
+            Description
+
+        </h2>
+
+
+        <p
+            class="description"
+            data-i18n="description">
+
+            GymManager est une solution professionnelle
+            destinée aux salles de sport et aux centres
+            de fitness.
+
+            Elle permet de gérer facilement les membres,
+            les abonnements, les paiements, les coachs,
+            les présences et les statistiques à partir
+            d'une interface moderne et intuitive.
+
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     FONCTIONNALITÉS
+========================== -->
+
+<section>
+
+    <div class="container">
+
+        <h2
+            class="section-title"
+            data-i18n="featuresTitle">
+
+            Fonctionnalités
+
+        </h2>
+
+
+        <div class="features">
+
+
+            <div class="feature-card">
+
+                <span class="feature-icon">
+                    👥
+                </span>
+
+                <span data-i18n="members">
+                    Gestion des membres
+                </span>
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <span class="feature-icon">
+                    📅
+                </span>
+
+                <span data-i18n="subscriptions">
+                    Gestion des abonnements
+                </span>
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <span class="feature-icon">
+                    💳
+                </span>
+
+                <span data-i18n="payments">
+                    Gestion des paiements
+                </span>
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <span class="feature-icon">
+                    🏋️
+                </span>
+
+                <span data-i18n="coaches">
+                    Gestion des coachs
+                </span>
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <span class="feature-icon">
+                    ✅
+                </span>
+
+                <span data-i18n="attendance">
+                    Suivi des présences
+                </span>
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <span class="feature-icon">
+                    📊
+                </span>
+
+                <span data-i18n="statistics">
+                    Statistiques
+                </span>
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <span class="feature-icon">
+                    🔔
+                </span>
+
+                <span data-i18n="alerts">
+                    Alertes d'abonnement
+                </span>
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <span class="feature-icon">
+                    👤
+                </span>
+
+                <span data-i18n="users">
+                    Gestion des utilisateurs
+                </span>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     SCREENSHOTS
+========================== -->
+
+<section>
+
+    <div class="container">
+
+        <h2
+            class="section-title"
+            data-i18n="screenshotsTitle">
+
+            Captures d'écran
+
+        </h2>
+
+
+        <div class="screenshots">
+
+
+            <div class="screenshot-card">
+
+                <img
+                    src="../screenshots/gymmanager-dashboard.png"
+                    alt="GymManager Dashboard"
+                >
+
+                <div
+                    class="screenshot-title"
+                    data-i18n="dashboard">
+
+                    Tableau de bord
+
+                </div>
+
+            </div>
+
+
+            <div class="screenshot-card">
+
+                <img
+                    src="../screenshots/gymmanager-login.png"
+                    alt="GymManager Login"
+                >
+
+                <div
+                    class="screenshot-title"
+                    data-i18n="login">
+
+                    Écran de connexion
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     CONTACT
+========================== -->
+
+<section>
+
+    <div class="container">
+
+        <div class="contact-box">
+
+            <h2 data-i18n="interested">
+
+                Intéressé par GymManager ?
+
+            </h2>
+
+
+            <p data-i18n="contactText">
+
+                Contactez Nabil Apps pour plus
+                d'informations ou pour demander
+                une démonstration.
+
+            </p>
+
+
+            <a
+                href="../index.html#contact"
+                class="contact-button"
+                data-i18n="contactButton">
+
+                Nous contacter
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     FOOTER
+========================== -->
+
+<footer>
+
+    © 2026 Nabil Apps —
+    <span data-i18n="footerProject">
+        GymManager
+    </span>
+
+</footer>
+
+
+<!-- =========================
+     LANGUAGE JAVASCRIPT
+========================== -->
+
+<script>
+
+const translations = {
+
+    fr: {
+
+        home: "Accueil",
+        services: "Services",
+        portfolio: "Portfolio",
+        contact: "Contact",
+
+        title: "GymManager",
+
+        heroDescription:
+        "Solution complète pour la gestion des salles de sport, des abonnements, des membres et des paiements.",
+
+        descriptionTitle:
+        "Description",
+
+        description:
+        "GymManager est une solution professionnelle destinée aux salles de sport et aux centres de fitness. Elle permet de gérer facilement les membres, les abonnements, les paiements, les coachs, les présences et les statistiques à partir d'une interface moderne et intuitive.",
+
+        featuresTitle:
+        "Fonctionnalités",
+
+        members:
+        "Gestion des membres",
+
+        subscriptions:
+        "Gestion des abonnements",
+
+        payments:
+        "Gestion des paiements",
+
+        coaches:
+        "Gestion des coachs",
+
+        attendance:
+        "Suivi des présences",
+
+        statistics:
+        "Statistiques",
+
+        alerts:
+        "Alertes d'abonnement",
+
+        users:
+        "Gestion des utilisateurs",
+
+        screenshotsTitle:
+        "Captures d'écran",
+
+        dashboard:
+        "Tableau de bord",
+
+        login:
+        "Écran de connexion",
+
+        interested:
+        "Intéressé par GymManager ?",
+
+        contactText:
+        "Contactez Nabil Apps pour plus d'informations ou pour demander une démonstration.",
+
+        contactButton:
+        "Nous contacter",
+
+        footerProject:
+        "GymManager"
+
+    },
+
+
+    en: {
+
+        home: "Home",
+        services: "Services",
+        portfolio: "Portfolio",
+        contact: "Contact",
+
+        title: "GymManager",
+
+        heroDescription:
+        "Complete solution for managing gyms, memberships, members and payments.",
+
+        descriptionTitle:
+        "Description",
+
+        description:
+        "GymManager is a professional solution designed for gyms and fitness centers. It allows you to easily manage members, memberships, payments, coaches, attendance and statistics through a modern and intuitive interface.",
+
+        featuresTitle:
+        "Features",
+
+        members:
+        "Member management",
+
+        subscriptions:
+        "Membership management",
+
+        payments:
+        "Payment management",
+
+        coaches:
+        "Coach management",
+
+        attendance:
+        "Attendance tracking",
+
+        statistics:
+        "Statistics",
+
+        alerts:
+        "Membership alerts",
+
+        users:
+        "User management",
+
+        screenshotsTitle:
+        "Screenshots",
+
+        dashboard:
+        "Dashboard",
+
+        login:
+        "Login screen",
+
+        interested:
+        "Interested in GymManager?",
+
+        contactText:
+        "Contact Nabil Apps for more information or to request a demonstration.",
+
+        contactButton:
+        "Contact us",
+
+        footerProject:
+        "GymManager"
+
+    },
+
+
+    ar: {
+
+        home: "الرئيسية",
+        services: "الخدمات",
+        portfolio: "المشاريع",
+        contact: "اتصل بنا",
+
+        title: "GymManager",
+
+        heroDescription:
+        "حل متكامل لإدارة قاعات الرياضة والاشتراكات والأعضاء والمدفوعات.",
+
+        descriptionTitle:
+        "الوصف",
+
+        description:
+        "GymManager هو حل احترافي مخصص لقاعات الرياضة ومراكز اللياقة البدنية. يسمح بإدارة الأعضاء والاشتراكات والمدفوعات والمدربين والحضور والإحصائيات بسهولة من خلال واجهة حديثة وسهلة الاستخدام.",
+
+        featuresTitle:
+        "الوظائف",
+
+        members:
+        "إدارة الأعضاء",
+
+        subscriptions:
+        "إدارة الاشتراكات",
+
+        payments:
+        "إدارة المدفوعات",
+
+        coaches:
+        "إدارة المدربين",
+
+        attendance:
+        "متابعة الحضور",
+
+        statistics:
+        "الإحصائيات",
+
+        alerts:
+        "تنبيهات الاشتراكات",
+
+        users:
+        "إدارة المستخدمين",
+
+        screenshotsTitle:
+        "لقطات الشاشة",
+
+        dashboard:
+        "لوحة التحكم",
+
+        login:
+        "واجهة تسجيل الدخول",
+
+        interested:
+        "هل أنت مهتم بـ GymManager؟",
+
+        contactText:
+        "اتصل بـ Nabil Apps للحصول على مزيد من المعلومات أو لطلب عرض تجريبي.",
+
+        contactButton:
+        "اتصل بنا",
+
+        footerProject:
+        "GymManager"
+
+    }
+
+};
+
+
+/* =========================
+   CHANGE LANGUAGE
+========================= */
+
+function changeLanguage(lang) {
+
+    const selectedLanguage =
+        translations[lang]
+        ? lang
+        : "fr";
+
+
+    /* Translate */
+
+    document
+        .querySelectorAll("[data-i18n]")
+        .forEach(element => {
+
+            const key =
+                element.getAttribute("data-i18n");
+
+            if (translations[selectedLanguage][key]) {
+
+                element.textContent =
+                    translations[selectedLanguage][key];
+
+            }
+
+        });
+
+
+    /* HTML language */
+
+    document.documentElement.lang =
+        selectedLanguage;
+
+
+    /* RTL Arabic */
+
+    if (selectedLanguage === "ar") {
+
+        document.documentElement.dir = "rtl";
+
+        document.body.classList.add("rtl");
+
+    }
+
+    else {
+
+        document.documentElement.dir = "ltr";
+
+        document.body.classList.remove("rtl");
+
+    }
+
+
+    /* Active button */
+
+    document
+        .querySelectorAll(".lang-btn")
+        .forEach(button => {
+
+            button.classList.remove("active");
+
+            if (
+                button.dataset.lang ===
+                selectedLanguage
+            ) {
+
+                button.classList.add("active");
+
+            }
+
+        });
+
+
+    /* Save language */
+
+    localStorage.setItem(
+        "siteLanguage",
+        selectedLanguage
+    );
+
+}
+
+
+/* =========================
+   LANGUAGE BUTTONS
+========================= */
+
+document
+    .querySelectorAll(".lang-btn")
+    .forEach(button => {
+
+        button.addEventListener(
+            "click",
+            function() {
+
+                changeLanguage(
+                    this.dataset.lang
+                );
+
+            }
+        );
+
+    });
+
+
+/* =========================
+   LOAD SAVED LANGUAGE
+========================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function() {
+
+        let savedLanguage =
+            localStorage.getItem(
+                "siteLanguage"
+            );
+
+        if (!savedLanguage) {
+
+            savedLanguage = "fr";
+
+        }
+
+        changeLanguage(savedLanguage);
+
+    }
+);
+
+</script>
+
+
+</body>
+</html>
