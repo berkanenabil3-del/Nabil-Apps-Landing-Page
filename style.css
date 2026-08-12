@@ -2591,3 +2591,23 @@ footer * {
         border-radius:15px;
     }
 }
+
+
+/* =========================================================
+   FINAL MOBILE/TABLET HEADER FIX
+   Prevent fixed header from covering the HERO content
+========================================================= */
+
+@media (max-width: 900px) {
+
+    header {
+        position: relative;
+        top: auto;
+        left: auto;
+    }
+
+    .hero {
+        padding-top: 55px;
+    }
+
+}
