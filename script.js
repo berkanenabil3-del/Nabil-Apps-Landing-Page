@@ -1,59 +1,54 @@
 /* =========================================================
    NABIL APPS - SCRIPT.JS
-   Dark Mode + Languages FR / EN / AR
-   Pricing Translation + RTL
-   Contact Form -> WhatsApp
-========================================================= */
+   ---------------------------------------------------------
+   Features:
+   - Dark / Light Mode
+   - FR / EN / AR
+   - Arabic RTL
+   - Language persistence
+   - Theme persistence
+   - Pricing translation
+   - Portfolio translation
+   - Contact Form -> WhatsApp
+   - Smooth scrolling
+   - Language dropdown
+   ========================================================= */
 
 document.addEventListener("DOMContentLoaded", function () {
 
     /* =====================================================
-       DARK MODE
+       CONFIGURATION
     ===================================================== */
 
-    const themeToggle = document.getElementById("theme-toggle");
+    const WHATSAPP_NUMBER = "213661106568";
 
-    if (themeToggle) {
+    const DEFAULT_LANGUAGE = "fr";
+    const DEFAULT_THEME = "light";
 
-        const icon = themeToggle.querySelector("i");
-        const savedTheme = localStorage.getItem("theme");
 
-        if (savedTheme === "dark") {
+    /* =====================================================
+       ELEMENTS
+    ===================================================== */
 
-            document.body.classList.add("dark");
+    const body = document.body;
 
-            if (icon) {
-                icon.classList.remove("fa-moon");
-                icon.classList.add("fa-sun");
-            }
+    const themeToggle =
+        document.getElementById("theme-toggle");
 
-        } else {
+    const languageBtn =
+        document.getElementById("languageBtn");
 
-            document.body.classList.remove("dark");
+    const languageDropdown =
+        document.querySelector(".language-dropdown");
 
-            if (icon) {
-                icon.classList.remove("fa-sun");
-                icon.classList.add("fa-moon");
-            }
-        }
+    const languageMenu =
+        document.getElementById("languageMenu");
 
-        themeToggle.addEventListener("click", function () {
+    const currentLanguage =
+        document.getElementById("currentLanguage");
 
-            const isDark =
-                document.body.classList.toggle("dark");
-
-            localStorage.setItem(
-                "theme",
-                isDark ? "dark" : "light"
-            );
-
-            if (icon) {
-
-                icon.classList.toggle("fa-moon", !isDark);
-                icon.classList.toggle("fa-sun", isDark);
-            }
-        });
-    }
+    const contactForm =
+        document.getElementById("contactForm");
 
 
     /* =====================================================
@@ -243,7 +238,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 "Décrivez votre projet...",
 
             send:
-                "Envoyer",
+                "Envoyer via WhatsApp",
 
             location:
                 "Sétif - Algérie",
@@ -318,7 +313,17 @@ document.addEventListener("DOMContentLoaded", function () {
                 "✓ Support technique",
 
             pricingNote:
-                "* Les tarifs sont indicatifs. Le prix final dépend des fonctionnalités, de la complexité et des besoins spécifiques du projet."
+                "* Les tarifs sont indicatifs. Le prix final dépend des fonctionnalités, de la complexité et des besoins spécifiques du projet.",
+
+            alertName:
+                "Veuillez saisir votre nom.",
+
+            alertEmail:
+                "Veuillez saisir votre adresse email.",
+
+            alertEmailInvalid:
+                "Veuillez saisir une adresse email valide."
+
         },
 
 
@@ -503,7 +508,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 "Describe your project...",
 
             send:
-                "Send",
+                "Send via WhatsApp",
 
             location:
                 "Setif - Algeria",
@@ -578,7 +583,17 @@ document.addEventListener("DOMContentLoaded", function () {
                 "✓ Technical Support",
 
             pricingNote:
-                "* Prices are indicative. The final price depends on the features, complexity and specific requirements of the project."
+                "* Prices are indicative. The final price depends on the features, complexity and specific requirements of the project.",
+
+            alertName:
+                "Please enter your name.",
+
+            alertEmail:
+                "Please enter your email address.",
+
+            alertEmailInvalid:
+                "Please enter a valid email address."
+
         },
 
 
@@ -763,7 +778,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 "صف لنا مشروعك...",
 
             send:
-                "إرسال",
+                "إرسال عبر WhatsApp",
 
             location:
                 "سطيف - الجزائر",
@@ -838,9 +853,128 @@ document.addEventListener("DOMContentLoaded", function () {
                 "✓ الدعم الفني",
 
             pricingNote:
-                "* الأسعار تقريبية. السعر النهائي يعتمد على الوظائف المطلوبة وتعقيد المشروع واحتياجات العميل الخاصة."
+                "* الأسعار تقريبية. السعر النهائي يعتمد على الوظائف المطلوبة وتعقيد المشروع واحتياجات العميل الخاصة.",
+
+            alertName:
+                "يرجى إدخال اسمك.",
+
+            alertEmail:
+                "يرجى إدخال بريدك الإلكتروني.",
+
+            alertEmailInvalid:
+                "يرجى إدخال بريد إلكتروني صحيح."
+
         }
+
     };
+
+
+    /* =====================================================
+       DARK MODE
+    ===================================================== */
+
+    function updateThemeIcon(isDark) {
+
+        if (!themeToggle) {
+            return;
+        }
+
+        const icon =
+            themeToggle.querySelector("i");
+
+        if (!icon) {
+            return;
+        }
+
+        if (isDark) {
+
+            icon.classList.remove("fa-moon");
+            icon.classList.add("fa-sun");
+
+            themeToggle.setAttribute(
+                "aria-label",
+                "Mode clair"
+            );
+
+        } else {
+
+            icon.classList.remove("fa-sun");
+            icon.classList.add("fa-moon");
+
+            themeToggle.setAttribute(
+                "aria-label",
+                "Mode sombre"
+            );
+        }
+    }
+
+
+    function setTheme(theme) {
+
+        const isDark =
+            theme === "dark";
+
+        body.classList.toggle(
+            "dark",
+            isDark
+        );
+
+        localStorage.setItem(
+            "theme",
+            isDark ? "dark" : "light"
+        );
+
+        updateThemeIcon(isDark);
+    }
+
+
+    if (themeToggle) {
+
+        const savedTheme =
+            localStorage.getItem("theme") ||
+            DEFAULT_THEME;
+
+        setTheme(savedTheme);
+
+        themeToggle.addEventListener(
+            "click",
+            function () {
+
+                const isDark =
+                    body.classList.contains("dark");
+
+                setTheme(
+                    isDark
+                        ? "light"
+                        : "dark"
+                );
+            }
+        );
+    }
+
+
+    /* =====================================================
+       UPDATE ELEMENT WITH ICON
+    ===================================================== */
+
+    function setElementText(element, text) {
+
+        if (!element) {
+            return;
+        }
+
+        element.textContent = text;
+    }
+
+
+    function setElementHTML(element, html) {
+
+        if (!element) {
+            return;
+        }
+
+        element.innerHTML = html;
+    }
 
 
     /* =====================================================
@@ -850,22 +984,38 @@ document.addEventListener("DOMContentLoaded", function () {
     function setLanguage(lang) {
 
         if (!translations[lang]) {
-            lang = "fr";
+            lang = DEFAULT_LANGUAGE;
         }
 
-        const t = translations[lang];
+        const t =
+            translations[lang];
 
-        document.documentElement.lang = lang;
+
+        /* -----------------------------------------------
+           HTML LANGUAGE
+        ------------------------------------------------ */
+
+        document.documentElement.lang =
+            lang;
+
+
+        /* -----------------------------------------------
+           RTL / LTR
+        ------------------------------------------------ */
 
         if (lang === "ar") {
 
-            document.documentElement.dir = "rtl";
-            document.body.classList.add("rtl");
+            document.documentElement.dir =
+                "rtl";
+
+            body.classList.add("rtl");
 
         } else {
 
-            document.documentElement.dir = "ltr";
-            document.body.classList.remove("rtl");
+            document.documentElement.dir =
+                "ltr";
+
+            body.classList.remove("rtl");
         }
 
 
@@ -880,40 +1030,74 @@ document.addEventListener("DOMContentLoaded", function () {
                 const key =
                     element.getAttribute("data-i18n");
 
-                if (t[key] !== undefined) {
+                if (
+                    t[key] !== undefined
+                ) {
 
-                    if (key === "heroTitle") {
-                        element.innerHTML = t[key];
-                    } else {
-                        element.textContent = t[key];
-                    }
+                    element.textContent =
+                        t[key];
                 }
             });
 
 
         /* =================================================
-           HEADER
+           HEADER NAVIGATION
         ================================================= */
 
         const navLinks =
-            document.querySelectorAll("nav ul li a");
+            document.querySelectorAll(
+                "nav ul li a"
+            );
 
         if (navLinks.length >= 6) {
 
-            navLinks[0].textContent = t.navHome;
-            navLinks[1].textContent = t.navServices;
-            navLinks[2].textContent = t.navPortfolio;
-            navLinks[3].textContent = t.navAbout;
-            navLinks[4].textContent = t.navContact;
-            navLinks[5].textContent = t.navPricing;
+            setElementText(
+                navLinks[0],
+                t.navHome
+            );
+
+            setElementText(
+                navLinks[1],
+                t.navServices
+            );
+
+            setElementText(
+                navLinks[2],
+                t.navPortfolio
+            );
+
+            setElementText(
+                navLinks[3],
+                t.navAbout
+            );
+
+            setElementText(
+                navLinks[4],
+                t.navContact
+            );
+
+            setElementText(
+                navLinks[5],
+                t.navPricing
+            );
         }
 
 
+        /* =================================================
+           HEADER QUOTE BUTTON
+        ================================================= */
+
         const headerButton =
-            document.querySelector(".btn-header");
+            document.querySelector(
+                ".btn-header"
+            );
 
         if (headerButton) {
-            headerButton.textContent = t.quote;
+
+            setElementText(
+                headerButton,
+                t.quote
+            );
         }
 
 
@@ -922,31 +1106,49 @@ document.addEventListener("DOMContentLoaded", function () {
         ================================================= */
 
         const heroTitle =
-            document.querySelector(".hero h1");
+            document.querySelector(
+                ".hero h1"
+            );
 
         if (heroTitle) {
-            heroTitle.innerHTML = t.heroTitle;
+
+            setElementHTML(
+                heroTitle,
+                t.heroTitle
+            );
         }
 
 
         const heroText =
-            document.querySelector(".hero-content p");
+            document.querySelector(
+                ".hero-content > p"
+            );
 
         if (heroText) {
-            heroText.textContent = t.heroText;
+
+            setElementText(
+                heroText,
+                t.heroText
+            );
         }
 
 
         const heroButtons =
-            document.querySelectorAll(".hero-buttons a");
+            document.querySelectorAll(
+                ".hero-buttons a"
+            );
 
         if (heroButtons.length >= 2) {
 
-            heroButtons[0].textContent =
-                t.heroProjects;
+            setElementText(
+                heroButtons[0],
+                t.heroProjects
+            );
 
-            heroButtons[1].textContent =
-                t.quote;
+            setElementText(
+                heroButtons[1],
+                t.quote
+            );
         }
 
 
@@ -955,48 +1157,59 @@ document.addEventListener("DOMContentLoaded", function () {
         ================================================= */
 
         const whySection =
-            document.querySelector(".why-us");
+            document.querySelector(
+                ".why-us"
+            );
 
         if (whySection) {
 
-            const h2 =
-                whySection.querySelector("h2");
-
-            if (h2) {
-                h2.textContent = t.whyTitle;
-            }
+            setElementText(
+                whySection.querySelector("h2"),
+                t.whyTitle
+            );
 
             const cards =
-                whySection.querySelectorAll(".why-card");
+                whySection.querySelectorAll(
+                    ".why-card"
+                );
 
             const data = [
-                [t.whySpeed, t.whySpeedText],
-                [t.whySecurity, t.whySecurityText],
-                [t.whySupport, t.whySupportText]
+
+                [
+                    t.whySpeed,
+                    t.whySpeedText
+                ],
+
+                [
+                    t.whySecurity,
+                    t.whySecurityText
+                ],
+
+                [
+                    t.whySupport,
+                    t.whySupportText
+                ]
+
             ];
 
-            cards.forEach(function (card, index) {
+            cards.forEach(
+                function (card, index) {
 
-                if (!data[index]) {
-                    return;
+                    if (!data[index]) {
+                        return;
+                    }
+
+                    setElementText(
+                        card.querySelector("h3"),
+                        data[index][0]
+                    );
+
+                    setElementText(
+                        card.querySelector("p"),
+                        data[index][1]
+                    );
                 }
-
-                const title =
-                    card.querySelector("h3");
-
-                const text =
-                    card.querySelector("p");
-
-                if (title) {
-                    title.textContent =
-                        data[index][0];
-                }
-
-                if (text) {
-                    text.textContent =
-                        data[index][1];
-                }
-            });
+            );
         }
 
 
@@ -1005,62 +1218,81 @@ document.addEventListener("DOMContentLoaded", function () {
         ================================================= */
 
         const services =
-            document.querySelector(".services");
+            document.querySelector(
+                ".services"
+            );
 
         if (services) {
 
-            const title =
-                services.querySelector("h2");
+            setElementText(
+                services.querySelector("h2"),
+                t.servicesTitle
+            );
 
-            if (title) {
-                title.textContent =
-                    t.servicesTitle;
-            }
-
-            const subtitle =
-                services.querySelector(".section-subtitle");
-
-            if (subtitle) {
-                subtitle.textContent =
-                    t.servicesSubtitle;
-            }
+            setElementText(
+                services.querySelector(
+                    ".section-subtitle"
+                ),
+                t.servicesSubtitle
+            );
 
             const cards =
-                services.querySelectorAll(".service-card");
+                services.querySelectorAll(
+                    ".service-card"
+                );
 
             const serviceData = [
 
-                [t.desktop, t.desktopText],
-                [t.web, t.webText],
-                [t.mobile, t.mobileText],
-                [t.saas, t.saasText],
-                [t.database, t.databaseText],
-                [t.maintenance, t.maintenanceText]
+                [
+                    t.desktop,
+                    t.desktopText
+                ],
+
+                [
+                    t.web,
+                    t.webText
+                ],
+
+                [
+                    t.mobile,
+                    t.mobileText
+                ],
+
+                [
+                    t.saas,
+                    t.saasText
+                ],
+
+                [
+                    t.database,
+                    t.databaseText
+                ],
+
+                [
+                    t.maintenance,
+                    t.maintenanceText
+                ]
 
             ];
 
-            cards.forEach(function (card, index) {
+            cards.forEach(
+                function (card, index) {
 
-                if (!serviceData[index]) {
-                    return;
+                    if (!serviceData[index]) {
+                        return;
+                    }
+
+                    setElementText(
+                        card.querySelector("h3"),
+                        serviceData[index][0]
+                    );
+
+                    setElementText(
+                        card.querySelector("p"),
+                        serviceData[index][1]
+                    );
                 }
-
-                const title =
-                    card.querySelector("h3");
-
-                const text =
-                    card.querySelector("p");
-
-                if (title) {
-                    title.textContent =
-                        serviceData[index][0];
-                }
-
-                if (text) {
-                    text.textContent =
-                        serviceData[index][1];
-                }
-            });
+            );
         }
 
 
@@ -1069,28 +1301,28 @@ document.addEventListener("DOMContentLoaded", function () {
         ================================================= */
 
         const portfolio =
-            document.querySelector(".portfolio");
+            document.querySelector(
+                ".portfolio"
+            );
 
         if (portfolio) {
 
-            const title =
-                portfolio.querySelector("h2");
+            setElementText(
+                portfolio.querySelector("h2"),
+                t.portfolioTitle
+            );
 
-            if (title) {
-                title.textContent =
-                    t.portfolioTitle;
-            }
-
-            const subtitle =
-                portfolio.querySelector(".portfolio-subtitle");
-
-            if (subtitle) {
-                subtitle.textContent =
-                    t.portfolioSubtitle;
-            }
+            setElementText(
+                portfolio.querySelector(
+                    ".portfolio-subtitle"
+                ),
+                t.portfolioSubtitle
+            );
 
             const cards =
-                portfolio.querySelectorAll(".portfolio-card");
+                portfolio.querySelectorAll(
+                    ".portfolio-card"
+                );
 
             const portfolioTexts = [
 
@@ -1104,27 +1336,23 @@ document.addEventListener("DOMContentLoaded", function () {
 
             ];
 
-            cards.forEach(function (card, index) {
+            cards.forEach(
+                function (card, index) {
 
-                const description =
-                    card.querySelector("p");
+                    if (portfolioTexts[index]) {
 
-                const button =
-                    card.querySelector(".btn-project");
+                        setElementText(
+                            card.querySelector("p"),
+                            portfolioTexts[index]
+                        );
+                    }
 
-                if (
-                    description &&
-                    portfolioTexts[index]
-                ) {
-                    description.textContent =
-                        portfolioTexts[index];
+                    setElementText(
+                        card.querySelector(".btn-project"),
+                        t.viewProject
+                    );
                 }
-
-                if (button) {
-                    button.textContent =
-                        t.viewProject;
-                }
-            });
+            );
         }
 
 
@@ -1133,17 +1361,16 @@ document.addEventListener("DOMContentLoaded", function () {
         ================================================= */
 
         const about =
-            document.querySelector(".about");
+            document.querySelector(
+                ".about"
+            );
 
         if (about) {
 
-            const h2 =
-                about.querySelector("h2");
-
-            if (h2) {
-                h2.textContent =
-                    t.aboutTitle;
-            }
+            setElementText(
+                about.querySelector("h2"),
+                t.aboutTitle
+            );
 
             const paragraphs =
                 about.querySelectorAll(
@@ -1152,12 +1379,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
             if (paragraphs.length >= 2) {
 
-                paragraphs[0].textContent =
-                    t.aboutText1;
+                setElementText(
+                    paragraphs[0],
+                    t.aboutText1
+                );
 
-                paragraphs[1].textContent =
-                    t.aboutText2;
+                setElementText(
+                    paragraphs[1],
+                    t.aboutText2
+                );
             }
+
 
             const list =
                 about.querySelectorAll(
@@ -1174,35 +1406,37 @@ document.addEventListener("DOMContentLoaded", function () {
 
             ];
 
-            list.forEach(function (item, index) {
+            list.forEach(
+                function (item, index) {
 
-                const icon =
-                    item.querySelector("i");
+                    const icon =
+                        item.querySelector("i");
 
-                item.textContent = "";
+                    item.textContent = "";
 
-                if (icon) {
-                    item.appendChild(icon);
+                    if (icon) {
+                        item.appendChild(icon);
+                    }
+
+                    if (aboutItems[index]) {
+
+                        item.appendChild(
+                            document.createTextNode(
+                                " " +
+                                aboutItems[index]
+                            )
+                        );
+                    }
                 }
-
-                if (aboutItems[index]) {
-
-                    item.appendChild(
-                        document.createTextNode(
-                            " " + aboutItems[index]
-                        )
-                    );
-                }
-            });
+            );
 
 
-            const button =
-                about.querySelector(".btn-primary");
-
-            if (button) {
-                button.textContent =
-                    t.quote;
-            }
+            setElementText(
+                about.querySelector(
+                    ".btn-primary"
+                ),
+                t.quote
+            );
         }
 
 
@@ -1211,17 +1445,16 @@ document.addEventListener("DOMContentLoaded", function () {
         ================================================= */
 
         const testimonials =
-            document.querySelector(".testimonials");
+            document.querySelector(
+                ".testimonials"
+            );
 
         if (testimonials) {
 
-            const title =
-                testimonials.querySelector("h2");
-
-            if (title) {
-                title.textContent =
-                    t.testimonialsTitle;
-            }
+            setElementText(
+                testimonials.querySelector("h2"),
+                t.testimonialsTitle
+            );
 
             const cards =
                 testimonials.querySelectorAll(
@@ -1244,24 +1477,20 @@ document.addEventListener("DOMContentLoaded", function () {
 
             ];
 
-            cards.forEach(function (card, index) {
+            cards.forEach(
+                function (card, index) {
 
-                const p =
-                    card.querySelector("p");
+                    setElementText(
+                        card.querySelector("p"),
+                        texts[index]
+                    );
 
-                const span =
-                    card.querySelector("span");
-
-                if (p && texts[index]) {
-                    p.textContent =
-                        texts[index];
+                    setElementText(
+                        card.querySelector("span"),
+                        labels[index]
+                    );
                 }
-
-                if (span && labels[index]) {
-                    span.textContent =
-                        labels[index];
-                }
-            });
+            );
         }
 
 
@@ -1270,25 +1499,21 @@ document.addEventListener("DOMContentLoaded", function () {
         ================================================= */
 
         const contact =
-            document.querySelector(".contact");
+            document.querySelector(
+                ".contact"
+            );
 
         if (contact) {
 
-            const title =
-                contact.querySelector("h2");
+            setElementText(
+                contact.querySelector("h2"),
+                t.contactTitle
+            );
 
-            if (title) {
-                title.textContent =
-                    t.contactTitle;
-            }
-
-            const intro =
-                contact.querySelector("h2 + p");
-
-            if (intro) {
-                intro.textContent =
-                    t.contactText;
-            }
+            setElementText(
+                contact.querySelector("h2 + p"),
+                t.contactText
+            );
 
 
             const inputs =
@@ -1315,21 +1540,32 @@ document.addEventListener("DOMContentLoaded", function () {
                 );
 
             if (textarea) {
+
                 textarea.placeholder =
                     t.projectPlaceholder;
             }
 
 
+            /* ---------------------------------------------
+               WhatsApp button
+            --------------------------------------------- */
+
             const sendButton =
                 contact.querySelector(
-                    ".contact-form button"
+                    "#sendWhatsAppBtn"
                 );
 
             if (sendButton) {
-                sendButton.textContent =
+
+                sendButton.innerHTML =
+                    '<i class="fab fa-whatsapp"></i> ' +
                     t.send;
             }
 
+
+            /* ---------------------------------------------
+               Location
+            --------------------------------------------- */
 
             const locationElements =
                 contact.querySelectorAll(
@@ -1364,25 +1600,23 @@ document.addEventListener("DOMContentLoaded", function () {
         ================================================= */
 
         const pricing =
-            document.querySelector(".pricing");
+            document.querySelector(
+                ".pricing"
+            );
 
         if (pricing) {
 
-            const title =
-                pricing.querySelector("h2");
+            setElementText(
+                pricing.querySelector("h2"),
+                t.pricingTitle
+            );
 
-            if (title) {
-                title.textContent =
-                    t.pricingTitle;
-            }
-
-            const subtitle =
-                pricing.querySelector(".section-subtitle");
-
-            if (subtitle) {
-                subtitle.textContent =
-                    t.pricingSubtitle;
-            }
+            setElementText(
+                pricing.querySelector(
+                    ".section-subtitle"
+                ),
+                t.pricingSubtitle
+            );
         }
 
 
@@ -1391,7 +1625,9 @@ document.addEventListener("DOMContentLoaded", function () {
         ================================================= */
 
         const footer =
-            document.querySelector("footer");
+            document.querySelector(
+                "footer"
+            );
 
         if (footer) {
 
@@ -1401,16 +1637,25 @@ document.addEventListener("DOMContentLoaded", function () {
                 );
 
             if (footerDescription) {
-                footerDescription.textContent =
-                    t.footerDescription;
+
+                setElementText(
+                    footerDescription,
+                    t.footerDescription
+                );
             }
 
+
             const copyright =
-                footer.querySelector(".copyright");
+                footer.querySelector(
+                    ".copyright"
+                );
 
             if (copyright) {
-                copyright.textContent =
-                    t.copyright;
+
+                setElementText(
+                    copyright,
+                    t.copyright
+                );
             }
         }
 
@@ -1419,14 +1664,9 @@ document.addEventListener("DOMContentLoaded", function () {
            LANGUAGE BUTTON
         ================================================= */
 
-        const currentLanguage =
-            document.getElementById(
-                "currentLanguage"
-            );
-
         if (currentLanguage) {
 
-            const langText = {
+            const languageNames = {
 
                 fr: "FR",
                 en: "EN",
@@ -1435,7 +1675,7 @@ document.addEventListener("DOMContentLoaded", function () {
             };
 
             currentLanguage.textContent =
-                langText[lang];
+                languageNames[lang];
         }
 
 
@@ -1445,16 +1685,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
         document
             .querySelectorAll(".lang-btn")
-            .forEach(function (button) {
+            .forEach(
+                function (button) {
 
-                button.classList.remove("active");
-
-                if (
-                    button.dataset.lang === lang
-                ) {
-                    button.classList.add("active");
+                    button.classList.toggle(
+                        "active",
+                        button.dataset.lang === lang
+                    );
                 }
-            });
+            );
 
 
         /* =================================================
@@ -1472,13 +1711,7 @@ document.addEventListener("DOMContentLoaded", function () {
        LANGUAGE DROPDOWN
     ===================================================== */
 
-    const languageBtn =
-        document.getElementById("languageBtn");
-
-    const languageDropdown =
-        document.querySelector(".language-dropdown");
-
-    if (languageBtn && languageDropdown) {
+    if (languageBtn) {
 
         languageBtn.addEventListener(
             "click",
@@ -1487,9 +1720,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 event.preventDefault();
                 event.stopPropagation();
 
-                languageDropdown.classList.toggle(
-                    "active"
-                );
+                if (languageDropdown) {
+
+                    languageDropdown.classList.toggle(
+                        "active"
+                    );
+                }
             }
         );
     }
@@ -1501,29 +1737,31 @@ document.addEventListener("DOMContentLoaded", function () {
 
     document
         .querySelectorAll(".lang-btn")
-        .forEach(function (button) {
+        .forEach(
+            function (button) {
 
-            button.addEventListener(
-                "click",
-                function (event) {
+                button.addEventListener(
+                    "click",
+                    function (event) {
 
-                    event.preventDefault();
-                    event.stopPropagation();
+                        event.preventDefault();
+                        event.stopPropagation();
 
-                    const lang =
-                        this.dataset.lang;
+                        const lang =
+                            this.dataset.lang;
 
-                    setLanguage(lang);
+                        setLanguage(lang);
 
-                    if (languageDropdown) {
+                        if (languageDropdown) {
 
-                        languageDropdown.classList.remove(
-                            "active"
-                        );
+                            languageDropdown.classList.remove(
+                                "active"
+                            );
+                        }
                     }
-                }
-            );
-        });
+                );
+            }
+        );
 
 
     /* =====================================================
@@ -1554,7 +1792,7 @@ document.addEventListener("DOMContentLoaded", function () {
         );
 
     setLanguage(
-        savedLanguage || "fr"
+        savedLanguage || DEFAULT_LANGUAGE
     );
 
 
@@ -1563,109 +1801,87 @@ document.addEventListener("DOMContentLoaded", function () {
     ===================================================== */
 
     document
-        .querySelectorAll('a[href^="#"]')
-        .forEach(function (link) {
+        .querySelectorAll(
+            'a[href^="#"]'
+        )
+        .forEach(
+            function (link) {
 
-            link.addEventListener(
-                "click",
-                function (event) {
+                link.addEventListener(
+                    "click",
+                    function (event) {
 
-                    const targetId =
-                        this.getAttribute("href");
+                        const targetId =
+                            this.getAttribute("href");
 
-                    if (
-                        targetId &&
-                        targetId !== "#"
-                    ) {
+                        if (
+                            targetId &&
+                            targetId !== "#"
+                        ) {
 
-                        const target =
-                            document.querySelector(
-                                targetId
-                            );
+                            const target =
+                                document.querySelector(
+                                    targetId
+                                );
 
-                        if (target) {
+                            if (target) {
 
-                            event.preventDefault();
+                                event.preventDefault();
 
-                            target.scrollIntoView({
-                                behavior: "smooth",
-                                block: "start"
-                            });
+                                target.scrollIntoView({
+                                    behavior: "smooth",
+                                    block: "start"
+                                });
+                            }
                         }
                     }
-                }
-            );
-        });
+                );
+            }
+        );
 
 
     /* =====================================================
        CONTACT FORM -> WHATSAPP
-
-       IMPORTANT:
-       - One submit handler only
-       - Prevent normal form submission
-       - Works with local HTML file
-       - Opens WhatsApp with the form information
     ===================================================== */
 
-    const contactForm =
-        document.querySelector(".contact-form");
-
     if (contactForm) {
-
-        /*
-         * Make sure the button is a submit button.
-         * This also fixes the case where HTML has:
-         * <button type="button">
-         */
-        const submitButton =
-            contactForm.querySelector("button");
-
-        if (submitButton) {
-            submitButton.type = "submit";
-        }
-
 
         contactForm.addEventListener(
             "submit",
             function (event) {
 
-                /*
-                 * IMPORTANT:
-                 * Stop the normal HTML form submission.
-                 */
                 event.preventDefault();
                 event.stopPropagation();
 
 
-                /* =========================================
-                   GET FORM FIELDS
-                ========================================= */
+                /* -----------------------------------------
+                   FIELDS
+                ----------------------------------------- */
 
                 const nameInput =
-                    contactForm.querySelector(
-                        'input[name="name"], input[id="name"], input[type="text"]'
+                    document.getElementById(
+                        "contactName"
                     );
 
                 const emailInput =
-                    contactForm.querySelector(
-                        'input[name="email"], input[id="email"], input[type="email"]'
+                    document.getElementById(
+                        "contactEmail"
                     );
 
                 const phoneInput =
-                    contactForm.querySelector(
-                        'input[name="phone"], input[id="phone"], input[type="tel"]'
+                    document.getElementById(
+                        "contactPhone"
                     );
 
                 const projectInput =
-                    contactForm.querySelector(
-                        'textarea[name="project"], textarea[id="project"], textarea'
+                    document.getElementById(
+                        "contactProject"
                     );
 
 
-                /* =========================================
-                   READ VALUES
-                ========================================= */
+                /* -----------------------------------------
+                   VALUES
+                ----------------------------------------- */
 
                 const name =
                     nameInput
@@ -1688,14 +1904,27 @@ document.addEventListener("DOMContentLoaded", function () {
                         : "";
 
 
-                /* =========================================
+                /* -----------------------------------------
+                   CURRENT LANGUAGE
+                ----------------------------------------- */
+
+                const lang =
+                    localStorage.getItem(
+                        "nabilAppsLanguage"
+                    ) || DEFAULT_LANGUAGE;
+
+                const t =
+                    translations[lang];
+
+
+                /* -----------------------------------------
                    VALIDATION
-                ========================================= */
+                ----------------------------------------- */
 
                 if (!name) {
 
                     alert(
-                        "Veuillez saisir votre nom."
+                        t.alertName
                     );
 
                     if (nameInput) {
@@ -1709,7 +1938,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 if (!email) {
 
                     alert(
-                        "Veuillez saisir votre adresse email."
+                        t.alertEmail
                     );
 
                     if (emailInput) {
@@ -1720,17 +1949,19 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
 
 
-                /* =========================================
+                /* -----------------------------------------
                    EMAIL VALIDATION
-                ========================================= */
+                ----------------------------------------- */
 
                 const emailPattern =
                     /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-                if (!emailPattern.test(email)) {
+                if (
+                    !emailPattern.test(email)
+                ) {
 
                     alert(
-                        "Veuillez saisir une adresse email valide."
+                        t.alertEmailInvalid
                     );
 
                     if (emailInput) {
@@ -1741,114 +1972,177 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
 
 
-                /* =========================================
-                   WHATSAPP NUMBER
+                /* -----------------------------------------
+                   WHATSAPP MESSAGE
+                ----------------------------------------- */
 
-                   Algeria:
-                   +213 661 10 65 68
-
-                   WhatsApp format:
-                   213661106568
-                ========================================= */
-
-                const whatsappNumber =
-                    "213661106568";
+                let message = "";
 
 
-                /* =========================================
-                   CREATE MESSAGE
-                ========================================= */
+                if (lang === "ar") {
 
-                const message =
-                    "📩 NOUVELLE DEMANDE DE PROJET\n\n" +
+                    message =
+                        "📩 طلب مشروع جديد\n\n" +
 
-                    "👤 Nom : " +
-                    name +
-                    "\n\n" +
+                        "👤 الاسم: " +
+                        name +
+                        "\n\n" +
 
-                    "📧 Email : " +
-                    email +
-                    "\n\n" +
+                        "📧 البريد الإلكتروني: " +
+                        email +
+                        "\n\n" +
 
-                    "📱 Téléphone : " +
-                    (phone || "Non renseigné") +
-                    "\n\n" +
+                        "📱 الهاتف: " +
+                        (phone || "غير محدد") +
+                        "\n\n" +
 
-                    "💻 Projet : " +
-                    (project || "Non renseigné") +
-                    "\n\n" +
+                        "💻 المشروع:\n" +
+                        (project || "غير محدد") +
+                        "\n\n" +
 
-                    "━━━━━━━━━━━━━━━━━━━━\n" +
+                        "━━━━━━━━━━━━━━━━━━━━\n" +
 
-                    "Nabil Apps\n" +
-                    "Développement Desktop • Web • Mobile";
+                        "Nabil Apps\n" +
+                        "تطوير تطبيقات سطح المكتب • الويب • الهاتف";
+
+                } else if (lang === "en") {
+
+                    message =
+                        "📩 NEW PROJECT REQUEST\n\n" +
+
+                        "👤 Name: " +
+                        name +
+                        "\n\n" +
+
+                        "📧 Email: " +
+                        email +
+                        "\n\n" +
+
+                        "📱 Phone: " +
+                        (phone || "Not provided") +
+                        "\n\n" +
+
+                        "💻 Project:\n" +
+                        (project || "Not provided") +
+                        "\n\n" +
+
+                        "━━━━━━━━━━━━━━━━━━━━\n" +
+
+                        "Nabil Apps\n" +
+                        "Desktop • Web • Mobile Development";
+
+                } else {
+
+                    message =
+                        "📩 NOUVELLE DEMANDE DE PROJET\n\n" +
+
+                        "👤 Nom : " +
+                        name +
+                        "\n\n" +
+
+                        "📧 Email : " +
+                        email +
+                        "\n\n" +
+
+                        "📱 Téléphone : " +
+                        (phone || "Non renseigné") +
+                        "\n\n" +
+
+                        "💻 Projet :\n" +
+                        (project || "Non renseigné") +
+                        "\n\n" +
+
+                        "━━━━━━━━━━━━━━━━━━━━\n" +
+
+                        "Nabil Apps\n" +
+                        "Développement Desktop • Web • Mobile";
+                }
 
 
-                /* =========================================
-                   CREATE WHATSAPP URL
-                ========================================= */
+                /* -----------------------------------------
+                   WHATSAPP URL
+                ----------------------------------------- */
 
                 const whatsappURL =
                     "https://wa.me/" +
-                    whatsappNumber +
+                    WHATSAPP_NUMBER +
                     "?text=" +
-                    encodeURIComponent(message);
+                    encodeURIComponent(
+                        message
+                    );
 
 
-                /* =========================================
+                /* -----------------------------------------
                    DEBUG
-                ========================================= */
-
-                console.log(
-                    "================================="
-                );
+                ----------------------------------------- */
 
                 console.log(
                     "NABIL APPS - WHATSAPP"
                 );
 
                 console.log(
-                    "Nom:",
-                    name
-                );
-
-                console.log(
-                    "Email:",
-                    email
-                );
-
-                console.log(
-                    "Téléphone:",
-                    phone
-                );
-
-                console.log(
-                    "Projet:",
-                    project
-                );
-
-                console.log(
-                    "WhatsApp URL:",
+                    "URL:",
                     whatsappURL
                 );
 
-                console.log(
-                    "================================="
-                );
 
-
-                /* =========================================
+                /* -----------------------------------------
                    OPEN WHATSAPP
-
-                   window.location.href is used instead of
-                   window.open because it is more reliable
-                   when the website is opened locally.
-                ========================================= */
+                ----------------------------------------- */
 
                 window.location.href =
                     whatsappURL;
+
             }
         );
     }
+
+
+    /* =====================================================
+       WHATSAPP FLOATING BUTTON
+    ===================================================== */
+
+    const whatsappFloat =
+        document.querySelector(
+            ".whatsapp-float"
+        );
+
+    if (whatsappFloat) {
+
+        whatsappFloat.href =
+            "https://wa.me/" +
+            WHATSAPP_NUMBER;
+    }
+
+
+    /* =====================================================
+       PREVENT EMPTY HASH JUMP
+    ===================================================== */
+
+    document
+        .querySelectorAll(
+            'a[href="#"]'
+        )
+        .forEach(
+            function (link) {
+
+                link.addEventListener(
+                    "click",
+                    function (event) {
+
+                        event.preventDefault();
+                    }
+                );
+            }
+        );
+
+
+    /* =====================================================
+       FINISHED
+    ===================================================== */
+
+    console.log(
+        "Nabil Apps - Script chargé avec succès."
+    );
 
 });
