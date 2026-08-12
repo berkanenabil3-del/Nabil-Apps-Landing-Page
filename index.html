@@ -1,1630 +1,284 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
-
-    <meta charset="UTF-8">
-
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-
-    <title>Nabil Apps | Développement Desktop, Web & Mobile</title>
-
-    <meta name="description"
-          content="Nabil Apps - Développement d'applications Desktop, Web et Mobile. Solutions professionnelles pour entreprises, commerces et particuliers.">
-
-    <meta name="keywords"
-          content="Nabil Apps, développement logiciel, application mobile, application web, Django, Flutter, Desktop, Algérie">
-
-    <meta name="author"
-          content="Nabil Apps">
-
-    <link rel="stylesheet" href="style.css">
-
-    <!-- Google Fonts -->
-    <link rel="preconnect"
-          href="https://fonts.googleapis.com">
-
-    <link rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossorigin>
-
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-          rel="stylesheet">
-
-    <!-- Font Awesome -->
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nabil Apps | Développement Desktop, Web & Mobile</title>
+  <meta name="description" content="Nabil Apps - Développement d'applications Desktop, Web et Mobile. Solutions professionnelles pour entreprises, commerces et particuliers.">
+  <meta name="keywords" content="Nabil Apps, développement logiciel, application mobile, application web, Django, Flutter, Desktop, Algérie">
+  <meta name="author" content="Nabil Apps">
+  <meta property="og:title" content="Nabil Apps | Solutions digitales">
+  <meta property="og:description" content="Développement Desktop, Web, Mobile et solutions SaaS.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="images/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
 </head>
-
-
 <body>
 
+<header class="site-header">
+  <div class="logo">
+    <img src="images/logo.png" alt="Nabil Apps Logo">
+    <span>Nabil Apps</span>
+  </div>
 
-<!-- =====================================================
-     HEADER
-===================================================== -->
-
-<header>
-
-    <div class="logo">
-
-        <img src="images/logo.png"
-             alt="Nabil Apps Logo">
-
-        <span>Nabil Apps</span>
-
-    </div>
-
-    <button class="mobile-menu-toggle" id="mobileMenuToggle" type="button" aria-label="Menu">
+  <button class="mobile-menu-toggle" id="mobileMenuToggle" type="button"
+          aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mainNav">
     <i class="fas fa-bars"></i>
+  </button>
+
+  <nav id="mainNav">
+    <ul>
+      <li><a href="#home" data-i18n="navHome">Accueil</a></li>
+      <li><a href="#services" data-i18n="navServices">Services</a></li>
+      <li><a href="#portfolio" data-i18n="navPortfolio">Portfolio</a></li>
+      <li><a href="#pricing" data-i18n="navPricing">Tarifs</a></li>
+      <li><a href="#about" data-i18n="navAbout">À propos</a></li>
+      <li><a href="#contact" data-i18n="navContact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="header-actions">
+    <button id="theme-toggle" class="icon-btn" type="button" aria-label="Changer le thème">
+      <i class="fas fa-moon"></i>
     </button>
 
-    <nav>
-
-        <ul>
-
-            <li>
-                <a href="#home"
-                   data-i18n="navHome">
-                    Accueil
-                </a>
-            </li>
-
-            <li>
-                <a href="#services"
-                   data-i18n="navServices">
-                    Services
-                </a>
-            </li>
-
-            <li>
-                <a href="#portfolio"
-                   data-i18n="navPortfolio">
-                    Portfolio
-                </a>
-            </li>
-
-            <li>
-                <a href="#about"
-                   data-i18n="navAbout">
-                    À propos
-                </a>
-            </li>
-
-            <li>
-                <a href="#contact"
-                   data-i18n="navContact">
-                    Contact
-                </a>
-            </li>
-
-            <li>
-                <a href="#pricing"
-                   data-i18n="navPricing">
-                    Tarifs
-                </a>
-            </li>
-
-        </ul>
-
-    </nav>
-
-
-    <!-- HEADER ACTIONS -->
-
-    <div class="header-actions">
-
-
-        <!-- DARK MODE -->
-
-        <button id="theme-toggle"
-                class="theme-toggle"
-                type="button"
-                aria-label="Changer le thème">
-
-            <i class="fas fa-moon"></i>
-
-        </button>
-
-
-        <!-- LANGUAGE -->
-
-        <div class="language-dropdown">
-
-
-            <button type="button"
-                    class="language-btn"
-                    id="languageBtn">
-
-                <i class="fa-solid fa-globe"></i>
-
-                <span id="currentLanguage">
-                    FR
-                </span>
-
-                <i class="fa-solid fa-chevron-down"></i>
-
-            </button>
-
-
-            <div class="language-menu"
-                 id="languageMenu">
-
-
-                <button type="button"
-                        class="lang-btn"
-                        data-lang="fr">
-
-                    🇫🇷 Français
-
-                </button>
-
-
-                <button type="button"
-                        class="lang-btn"
-                        data-lang="en">
-
-                    🇬🇧 English
-
-                </button>
-
-
-                <button type="button"
-                        class="lang-btn"
-                        data-lang="ar">
-
-                    🇩🇿 العربية
-
-                </button>
-
-
-            </div>
-
-        </div>
-
+    <div class="language-dropdown">
+      <button type="button" class="language-btn" id="languageBtn" aria-expanded="false">
+        <i class="fa-solid fa-globe"></i>
+        <span id="currentLanguage">FR</span>
+        <i class="fa-solid fa-chevron-down"></i>
+      </button>
+      <div class="language-menu" id="languageMenu">
+        <button type="button" class="lang-btn" data-lang="fr">🇫🇷 Français</button>
+        <button type="button" class="lang-btn" data-lang="en">🇬🇧 English</button>
+        <button type="button" class="lang-btn" data-lang="ar">🇩🇿 العربية</button>
+      </div>
     </div>
-
+  </div>
 </header>
 
-
-
-<!-- =====================================================
-     HERO
-===================================================== -->
-
-<section class="hero"
-         id="home">
-
-
-    <div class="hero-content">
-
-
-        <h1>
-
-            Développement
-
-            <span>Desktop</span>,
-
-            <span>Web</span>
-
-            &
-
-            <span>Mobile</span>
-
-        </h1>
-
-
-        <p>
-
-            Nous développons des applications professionnelles,
-            modernes et sécurisées pour les entreprises,
-            commerces, cliniques et particuliers.
-
-        </p>
-
-
-        <div class="hero-buttons">
-
-
-            <a href="#portfolio"
-               class="btn-primary"
-               data-i18n="heroProjects">
-
-                Voir nos réalisations
-
-            </a>
-
-
-            <a href="#contact"
-               class="btn-secondary"
-               data-i18n="quote">
-
-                Demander un devis
-
-            </a>
-
-
-        </div>
-
-
-    </div>
-
-
-    <div class="hero-image">
-
-        <img src="images/hero.png"
-             alt="Développement d'applications Nabil Apps">
-
-    </div>
-
-
-</section>
-
-
-
-<!-- =====================================================
-     WHY CHOOSE US
-===================================================== -->
-
-<section class="why-us">
-
-
-    <h2 data-i18n="whyTitle">
-
-        Pourquoi choisir Nabil Apps ?
-
-    </h2>
-
-
-    <div class="why-grid">
-
-
-        <!-- RAPIDITE -->
-
-        <div class="why-card">
-
-
-            <i class="fas fa-bolt"></i>
-
-
-            <h3 data-i18n="whySpeed">
-
-                Rapidité
-
-            </h3>
-
-
-            <p data-i18n="whySpeedText">
-
-                Livraison rapide et respect des délais.
-
-            </p>
-
-
-        </div>
-
-
-
-        <!-- SECURITE -->
-
-        <div class="why-card">
-
-
-            <i class="fas fa-shield-alt"></i>
-
-
-            <h3 data-i18n="whySecurity">
-
-                Sécurité
-
-            </h3>
-
-
-            <p data-i18n="whySecurityText">
-
-                Applications fiables, modernes et sécurisées.
-
-            </p>
-
-
-        </div>
-
-
-
-        <!-- SUPPORT -->
-
-        <div class="why-card">
-
-
-            <i class="fas fa-headset"></i>
-
-
-            <h3 data-i18n="whySupport">
-
-                Support
-
-            </h3>
-
-
-            <p data-i18n="whySupportText">
-
-                Assistance technique avant et après livraison.
-
-            </p>
-
-
-        </div>
-
-
-    </div>
-
-</section>
-
-
-
-<!-- =====================================================
-     SERVICES
-===================================================== -->
-
-<section class="services"
-         id="services">
-
-
-    <h2 data-i18n="servicesTitle">
-
-        Nos Services
-
-    </h2>
-
-
-    <p class="section-subtitle"
-       data-i18n="servicesSubtitle">
-
-        Des solutions informatiques adaptées à vos besoins.
-
+<main>
+<section class="hero" id="home">
+  <div class="hero-content reveal">
+    <span class="eyebrow" data-i18n="heroEyebrow">NABIL APPS • DIGITAL SOLUTIONS</span>
+    <h1 data-i18n="heroTitle">Développement Desktop, Web & Mobile</h1>
+    <p data-i18n="heroDescription">
+      Nous développons des applications professionnelles, modernes et sécurisées pour les entreprises,
+      commerces, cliniques et particuliers.
     </p>
-
-
-    <div class="services-grid">
-
-
-        <!-- DESKTOP -->
-
-        <div class="service-card">
-
-
-            <i class="fa-solid fa-desktop"></i>
-
-
-            <h3 data-i18n="desktop">
-
-                Desktop
-
-            </h3>
-
-
-            <p data-i18n="desktopText">
-
-                Applications Windows professionnelles
-                pour la gestion d'entreprise.
-
-            </p>
-
-
-        </div>
-
-
-
-        <!-- WEB -->
-
-        <div class="service-card">
-
-
-            <i class="fa-solid fa-globe"></i>
-
-
-            <h3 data-i18n="web">
-
-                Web
-
-            </h3>
-
-
-            <p data-i18n="webText">
-
-                Sites Web modernes et applications
-                développées avec Django.
-
-            </p>
-
-
-        </div>
-
-
-
-        <!-- MOBILE -->
-
-        <div class="service-card">
-
-
-            <i class="fa-solid fa-mobile-screen-button"></i>
-
-
-            <h3 data-i18n="mobile">
-
-                Mobile
-
-            </h3>
-
-
-            <p data-i18n="mobileText">
-
-                Applications Android rapides,
-                modernes et intuitives.
-
-            </p>
-
-
-        </div>
-
-
-
-        <!-- SAAS -->
-
-        <div class="service-card">
-
-
-            <i class="fa-solid fa-cloud"></i>
-
-
-            <h3 data-i18n="saas">
-
-                SaaS
-
-            </h3>
-
-
-            <p data-i18n="saasText">
-
-                Solutions Cloud sécurisées
-                accessibles partout.
-
-            </p>
-
-
-        </div>
-
-
-
-        <!-- DATABASE -->
-
-        <div class="service-card">
-
-
-            <i class="fa-solid fa-database"></i>
-
-
-            <h3 data-i18n="database">
-
-                Base de données
-
-            </h3>
-
-
-            <p data-i18n="databaseText">
-
-                Conception et gestion de bases
-                de données performantes.
-
-            </p>
-
-
-        </div>
-
-
-
-        <!-- MAINTENANCE -->
-
-        <div class="service-card">
-
-
-            <i class="fa-solid fa-screwdriver-wrench"></i>
-
-
-            <h3 data-i18n="maintenance">
-
-                Maintenance
-
-            </h3>
-
-
-            <p data-i18n="maintenanceText">
-
-                Maintenance informatique,
-                assistance et optimisation.
-
-            </p>
-
-
-        </div>
-
-
+    <div class="hero-buttons">
+      <a href="#portfolio" class="btn btn-primary" data-i18n="heroProjects">Voir nos réalisations</a>
+      <a href="#contact" class="btn btn-secondary" data-i18n="quote">Demander un devis</a>
     </div>
+    <div class="hero-stats">
+      <div><strong>Desktop</strong><span>Python / Windows</span></div>
+      <div><strong>Web</strong><span>Django / JavaScript</span></div>
+      <div><strong>Mobile</strong><span>Flutter / Android</span></div>
+    </div>
+  </div>
 
+  <div class="hero-image reveal">
+    <img src="images/hero.png" alt="Développement d'applications Nabil Apps"
+         onerror="this.style.display='none'">
+    <div class="hero-placeholder">
+      <i class="fa-solid fa-code"></i>
+      <span>Nabil Apps</span>
+      <small>Desktop • Web • Mobile</small>
+    </div>
+  </div>
 </section>
 
-
-
-<!-- =====================================================
-     PORTFOLIO
-===================================================== -->
-
-<section class="portfolio"
-         id="portfolio">
-
-
-    <h2 data-i18n="portfolioTitle">
-
-        Nos Réalisations
-
-    </h2>
-
-
-    <p class="portfolio-subtitle"
-       data-i18n="portfolioSubtitle">
-
-        Découvrez quelques applications développées
-        par Nabil Apps.
-
-    </p>
-
-
-    <div class="portfolio-grid">
-
-
-        <!-- G-STOCK -->
-
-        <div class="portfolio-card">
-
-
-            <img src="images/gstock.png"
-                 alt="G-Stock ERP">
-
-
-            <h3>
-
-                G-Stock ERP
-
-            </h3>
-
-
-            <p data-i18n="gstockText">
-
-                Gestion de stock, ventes,
-                achats et facturation.
-
-            </p>
-
-
-            <a href="projects/gstock.html"
-               class="btn-project"
-               data-i18n="viewProject">
-
-                Voir le projet
-
-            </a>
-
-
-        </div>
-
-
-
-        <!-- MOBILE MANAGER -->
-
-        <div class="portfolio-card">
-
-
-            <img src="images/mobilemanager-dashboard.png"
-                 alt="MobileManager">
-
-
-            <h3>
-
-                MobileManager
-
-            </h3>
-
-
-            <p data-i18n="mobilemanagerText">
-
-                Gestion des magasins de téléphones
-                et ateliers de réparation.
-
-            </p>
-
-
-            <a href="projects/mobilemanager.html"
-               class="btn-project"
-               data-i18n="viewProject">
-
-                Voir le projet
-
-            </a>
-
-
-        </div>
-
-
-
-        <!-- MEDRDV -->
-
-        <div class="portfolio-card">
-
-
-            <img src="images/medrdv.png"
-                 alt="MedRDV Mobile">
-
-
-            <h3>
-
-                MedRDV Mobile
-
-            </h3>
-
-
-            <p data-i18n="medrdvText">
-
-                Gestion des rendez-vous médicaux.
-
-            </p>
-
-
-            <a href="projects/MedRDVMobile.html"
-               class="btn-project"
-               data-i18n="viewProject">
-
-                Voir le projet
-
-            </a>
-
-
-        </div>
-
-
-
-        <!-- GYM MANAGER -->
-
-        <div class="portfolio-card">
-
-
-            <img src="images/gymmanager.png"
-                 alt="GymManager Pro">
-
-
-            <h3>
-
-                GymManager Pro
-
-            </h3>
-
-
-            <p data-i18n="gymmanagerText">
-
-                Gestion des abonnements,
-                paiements et adhérents.
-
-            </p>
-
-
-            <a href="projects/GymManager.html"
-               class="btn-project"
-               data-i18n="viewProject">
-
-                Voir le projet
-
-            </a>
-
-
-        </div>
-
-
-
-        <!-- COUTURE -->
-
-        <div class="portfolio-card">
-
-
-            <img src="images/couture.png"
-                 alt="Couture Pro">
-
-
-            <h3>
-
-                Couture Pro
-
-            </h3>
-
-
-            <p data-i18n="coutureText">
-
-                Gestion complète des ateliers
-                de couture.
-
-            </p>
-
-
-            <a href="projects/couture.html"
-               class="btn-project"
-               data-i18n="viewProject">
-
-                Voir le projet
-
-            </a>
-
-
-        </div>
-
-
-
-        <!-- PATISSERIE -->
-
-        <div class="portfolio-card">
-
-
-            <img src="images/patisserie.png"
-                 alt="Pâtisserie Pro">
-
-
-            <h3>
-
-                Pâtisserie Pro
-
-            </h3>
-
-
-            <p data-i18n="patisserieText">
-
-                Gestion des commandes,
-                clients et production.
-
-            </p>
-
-
-            <a href="projects/patisserie.html"
-               class="btn-project"
-               data-i18n="viewProject">
-
-                Voir le projet
-
-            </a>
-
-
-        </div>
-
-
-
-        <!-- G-STOCK MOBILE -->
-
-        <div class="portfolio-card">
-
-
-            <img src="images/gstock-mobile-dashbord.png"
-                 alt="G-Stock Mobile">
-
-
-            <h3>
-
-                G-Stock Mobile
-
-            </h3>
-
-
-            <p data-i18n="restaurantText">
-
-                Solution complète pour les commerçants
-                et les petites entreprises.
-
-            </p>
-
-
-            <a href="projects/gstock-mobile.html"
-               class="btn-project"
-               data-i18n="viewProject">
-
-                Voir le projet
-
-            </a>
-
-
-        </div>
-
-
-    </div>
-
+<section class="why-us section" id="why">
+  <div class="section-heading reveal">
+    <span class="eyebrow" data-i18n="whyEyebrow">NOS ENGAGEMENTS</span>
+    <h2 data-i18n="whyTitle">Pourquoi choisir Nabil Apps ?</h2>
+  </div>
+  <div class="why-grid">
+    <article class="why-card reveal"><i class="fas fa-bolt"></i><h3 data-i18n="whySpeed">Rapidité</h3><p data-i18n="whySpeedText">Livraison rapide et respect des délais.</p></article>
+    <article class="why-card reveal"><i class="fas fa-shield-halved"></i><h3 data-i18n="whySecurity">Sécurité</h3><p data-i18n="whySecurityText">Applications fiables, modernes et sécurisées.</p></article>
+    <article class="why-card reveal"><i class="fas fa-headset"></i><h3 data-i18n="whySupport">Support</h3><p data-i18n="whySupportText">Assistance technique avant et après livraison.</p></article>
+  </div>
 </section>
 
-
-
-<!-- =====================================================
-     PRICING
-===================================================== -->
-
-<section id="pricing"
-         class="pricing">
-
-
-    <h2 data-i18n="pricingTitle">
-
-        Nos tarifs
-
-    </h2>
-
-
-    <p class="section-subtitle"
-       data-i18n="pricingSubtitle">
-
-        Des solutions professionnelles adaptées
-        à votre budget.
-
-    </p>
-
-
-    <div class="pricing-grid">
-
-
-        <!-- LANDING PAGE -->
-
-        <div class="pricing-card">
-
-
-            <i class="fa-solid fa-bullseye"></i>
-
-
-            <h3 data-i18n="landingPage">
-
-                Landing Page
-
-            </h3>
-
-
-            <p class="price"
-               data-i18n="landingPrice">
-
-                À partir de 15 000 DA
-
-            </p>
-
-
-            <ul>
-
-
-                <li data-i18n="modernDesign">
-
-                    ✓ Design moderne
-
-                </li>
-
-
-                <li data-i18n="responsiveMobile">
-
-                    ✓ Responsive Mobile
-
-                </li>
-
-
-                <li data-i18n="contactForm">
-
-                    ✓ Formulaire de contact
-
-                </li>
-
-
-                <li data-i18n="whatsappIntegration">
-
-                    ✓ Intégration WhatsApp
-
-                </li>
-
-
-                <li data-i18n="seoOptimization">
-
-                    ✓ Optimisation SEO
-
-                </li>
-
-
-            </ul>
-
-
-            <a href="#contact"
-               class="pricing-btn"
-               data-i18n="requestQuote">
-
-                Demander un devis
-
-            </a>
-
-
-        </div>
-
-
-
-        <!-- WEBSITE -->
-
-        <div class="pricing-card featured">
-
-
-            <span class="popular"
-                  data-i18n="popular">
-
-                POPULAIRE
-
-            </span>
-
-
-            <i class="fa-solid fa-globe"></i>
-
-
-            <h3 data-i18n="website">
-
-                Site Web
-
-            </h3>
-
-
-            <p class="price"
-               data-i18n="websitePrice">
-
-                À partir de 30 000 DA
-
-            </p>
-
-
-            <ul>
-
-
-                <li data-i18n="professionalDesign">
-
-                    ✓ Design professionnel
-
-                </li>
-
-
-                <li data-i18n="multiplePages">
-
-                    ✓ Plusieurs pages
-
-                </li>
-
-
-                <li data-i18n="responsiveMobile">
-
-                    ✓ Responsive Mobile
-
-                </li>
-
-
-                <li data-i18n="contactForm">
-
-                    ✓ Formulaire de contact
-
-                </li>
-
-
-                <li data-i18n="seoOptimization">
-
-                    ✓ Optimisation SEO
-
-                </li>
-
-
-            </ul>
-
-
-            <a href="#contact"
-               class="pricing-btn"
-               data-i18n="requestQuote">
-
-                Demander un devis
-
-            </a>
-
-
-        </div>
-
-
-
-        <!-- MOBILE APP -->
-
-        <div class="pricing-card">
-
-
-            <i class="fa-solid fa-mobile-screen-button"></i>
-
-
-            <h3 data-i18n="mobileApp">
-
-                Application Mobile
-
-            </h3>
-
-
-            <p class="price"
-               data-i18n="mobilePrice">
-
-                À partir de 40 000 DA
-
-            </p>
-
-
-            <ul>
-
-
-                <li data-i18n="androidApp">
-
-                    ✓ Application Android
-
-                </li>
-
-
-                <li data-i18n="modernInterface">
-
-                    ✓ Interface moderne
-
-                </li>
-
-
-                <li data-i18n="database">
-
-                    ✓ Base de données
-
-                </li>
-
-
-                <li data-i18n="authentication">
-
-                    ✓ Authentification
-
-                </li>
-
-
-                <li data-i18n="technicalSupport">
-
-                    ✓ Support technique
-
-                </li>
-
-
-            </ul>
-
-
-            <a href="#contact"
-               class="pricing-btn"
-               data-i18n="requestQuote">
-
-                Demander un devis
-
-            </a>
-
-
-        </div>
-
-
-    </div>
-
-
-    <p class="pricing-note"
-       data-i18n="pricingNote">
-
-        * Les tarifs sont indicatifs. Le prix final dépend
-        des fonctionnalités, de la complexité et des besoins
-        spécifiques du projet.
-
-    </p>
-
-
+<section class="services section" id="services">
+  <div class="section-heading reveal">
+    <span class="eyebrow" data-i18n="servicesEyebrow">EXPERTISE</span>
+    <h2 data-i18n="servicesTitle">Nos Services</h2>
+    <p class="section-subtitle" data-i18n="servicesSubtitle">Des solutions informatiques adaptées à vos besoins.</p>
+  </div>
+  <div class="services-grid">
+    <article class="service-card reveal"><i class="fa-solid fa-desktop"></i><h3 data-i18n="desktop">Desktop</h3><p data-i18n="desktopText">Applications Windows professionnelles pour la gestion d'entreprise.</p><span>Python • SQLite</span></article>
+    <article class="service-card reveal"><i class="fa-solid fa-globe"></i><h3 data-i18n="web">Web</h3><p data-i18n="webText">Sites Web modernes et applications développées avec Django.</p><span>Django • HTML • CSS • JS</span></article>
+    <article class="service-card reveal"><i class="fa-solid fa-mobile-screen-button"></i><h3 data-i18n="mobile">Mobile</h3><p data-i18n="mobileText">Applications Android rapides, modernes et intuitives.</p><span>Flutter • Android</span></article>
+    <article class="service-card reveal"><i class="fa-solid fa-cloud"></i><h3 data-i18n="saas">SaaS</h3><p data-i18n="saasText">Solutions Cloud sécurisées accessibles partout.</p><span>Cloud • API</span></article>
+    <article class="service-card reveal"><i class="fa-solid fa-database"></i><h3 data-i18n="database">Base de données</h3><p data-i18n="databaseText">Conception et gestion de bases de données performantes.</p><span>SQLite • MySQL</span></article>
+    <article class="service-card reveal"><i class="fa-solid fa-screwdriver-wrench"></i><h3 data-i18n="maintenance">Maintenance</h3><p data-i18n="maintenanceText">Maintenance informatique, assistance et optimisation.</p><span>Support • Réseau</span></article>
+  </div>
 </section>
 
+<section class="portfolio section" id="portfolio">
+  <div class="section-heading reveal">
+    <span class="eyebrow" data-i18n="portfolioEyebrow">PROJETS</span>
+    <h2 data-i18n="portfolioTitle">Nos Réalisations</h2>
+    <p class="section-subtitle" data-i18n="portfolioSubtitle">Découvrez quelques applications développées par Nabil Apps.</p>
+  </div>
 
+  <div class="portfolio-grid">
+    <article class="portfolio-card reveal">
+      <div class="project-image"><img src="images/gstock.png" alt="G-Stock ERP" onerror="this.style.display='none'"><i class="fa-solid fa-boxes-stacked"></i></div>
+      <div class="project-body"><span class="tag">Desktop</span><h3>G-Stock ERP</h3><p data-i18n="gstockText">Gestion de stock, ventes, achats et facturation.</p><a href="projects/gstock.html" class="btn-project" data-i18n="viewProject">Voir le projet</a></div>
+    </article>
 
-<!-- =====================================================
-     ABOUT
-===================================================== -->
+    <article class="portfolio-card reveal">
+      <div class="project-image"><img src="images/mobilemanager-dashboard.png" alt="MobileManager" onerror="this.style.display='none'"><i class="fa-solid fa-mobile-retro"></i></div>
+      <div class="project-body"><span class="tag">Desktop / Web</span><h3>MobileManager</h3><p data-i18n="mobilemanagerText">Gestion des magasins de téléphones et ateliers de réparation.</p><a href="projects/mobilemanager.html" class="btn-project" data-i18n="viewProject">Voir le projet</a></div>
+    </article>
 
-<section class="about"
-         id="about">
+    <article class="portfolio-card reveal">
+      <div class="project-image"><img src="images/medrdv.png" alt="MedRDV Mobile" onerror="this.style.display='none'"><i class="fa-solid fa-calendar-check"></i></div>
+      <div class="project-body"><span class="tag">Mobile</span><h3>MedRDV Mobile</h3><p data-i18n="medrdvText">Gestion des rendez-vous médicaux.</p><a href="projects/MedRDVMobile.html" class="btn-project" data-i18n="viewProject">Voir le projet</a></div>
+    </article>
 
+    <article class="portfolio-card reveal">
+      <div class="project-image"><img src="images/gymmanager.png" alt="GymManager Pro" onerror="this.style.display='none'"><i class="fa-solid fa-dumbbell"></i></div>
+      <div class="project-body"><span class="tag">Gestion</span><h3>GymManager Pro</h3><p data-i18n="gymmanagerText">Gestion des abonnements, paiements et adhérents.</p><a href="projects/GymManager.html" class="btn-project" data-i18n="viewProject">Voir le projet</a></div>
+    </article>
 
-    <div class="about-image">
+    <article class="portfolio-card reveal">
+      <div class="project-image"><img src="images/couture.png" alt="Couture Pro" onerror="this.style.display='none'"><i class="fa-solid fa-scissors"></i></div>
+      <div class="project-body"><span class="tag">Gestion</span><h3>Couture Pro</h3><p data-i18n="coutureText">Gestion complète des ateliers de couture.</p><a href="projects/couture.html" class="btn-project" data-i18n="viewProject">Voir le projet</a></div>
+    </article>
 
+    <article class="portfolio-card reveal">
+      <div class="project-image"><img src="images/patisserie.png" alt="Pâtisserie Pro" onerror="this.style.display='none'"><i class="fa-solid fa-cake-candles"></i></div>
+      <div class="project-body"><span class="tag">Gestion</span><h3>Pâtisserie Pro</h3><p data-i18n="patisserieText">Gestion des commandes, clients et production.</p><a href="projects/patisserie.html" class="btn-project" data-i18n="viewProject">Voir le projet</a></div>
+    </article>
 
-        <img src="images/about.png"
-             alt="À propos de Nabil Apps">
-
-
-    </div>
-
-
-    <div class="about-content">
-
-
-        <h2 data-i18n="aboutTitle">
-
-            À propos de Nabil Apps
-
-        </h2>
-
-
-        <p data-i18n="aboutText1">
-
-            Nabil Apps est spécialisé dans le développement
-            d'applications Desktop, Web et Mobile.
-
-        </p>
-
-
-        <p data-i18n="aboutText2">
-
-            Nous créons des solutions innovantes pour les
-            entreprises, commerces, cliniques, restaurants,
-            salles de sport et ateliers.
-
-        </p>
-
-
-        <div class="about-list">
-
-
-            <div>
-
-                <i class="fa-solid fa-check"></i>
-
-                Développement Desktop
-
-            </div>
-
-
-            <div>
-
-                <i class="fa-solid fa-check"></i>
-
-                Développement Web
-
-            </div>
-
-
-            <div>
-
-                <i class="fa-solid fa-check"></i>
-
-                Applications Android
-
-            </div>
-
-
-            <div>
-
-                <i class="fa-solid fa-check"></i>
-
-                Solutions SaaS
-
-            </div>
-
-
-            <div>
-
-                <i class="fa-solid fa-check"></i>
-
-                Maintenance & Support
-
-            </div>
-
-
-        </div>
-
-
-        <a href="#contact"
-           class="btn-primary"
-           data-i18n="quote">
-
-            Demander un devis
-
-        </a>
-
-
-    </div>
-
-
+    <article class="portfolio-card reveal">
+      <div class="project-image"><img src="images/gstock-mobile-dashbord.png" alt="G-Stock Mobile" onerror="this.style.display='none'"><i class="fa-solid fa-chart-line"></i></div>
+      <div class="project-body"><span class="tag">Mobile</span><h3>G-Stock Mobile</h3><p data-i18n="gstockMobileText">Solution complète pour les commerçants et petites entreprises.</p><a href="projects/gstock-mobile.html" class="btn-project" data-i18n="viewProject">Voir le projet</a></div>
+    </article>
+  </div>
 </section>
 
-
-
-<!-- =====================================================
-     TESTIMONIALS
-===================================================== -->
-
-<section class="testimonials">
-
-
-    <h2 data-i18n="testimonialsTitle">
-
-        Ce que disent nos clients
-
-    </h2>
-
-
-    <div class="testimonial-grid">
-
-
-        <!-- TESTIMONIAL 1 -->
-
-        <div class="testimonial-card">
-
-
-            <i class="fa-solid fa-quote-left"></i>
-
-
-            <p data-i18n="testimonial1">
-
-                Excellent travail, application moderne
-                et support technique rapide.
-
-            </p>
-
-
-            <h4>
-
-                ⭐⭐⭐⭐⭐
-
-            </h4>
-
-
-            <span data-i18n="company">
-
-                Entreprise
-
-            </span>
-
-
-        </div>
-
-
-
-        <!-- TESTIMONIAL 2 -->
-
-        <div class="testimonial-card">
-
-
-            <i class="fa-solid fa-quote-left"></i>
-
-
-            <p data-i18n="testimonial2">
-
-                Très satisfait du développement
-                de notre application de gestion.
-
-            </p>
-
-
-            <h4>
-
-                ⭐⭐⭐⭐⭐
-
-            </h4>
-
-
-            <span data-i18n="professionalClient">
-
-                Client Professionnel
-
-            </span>
-
-
-        </div>
-
-
-
-        <!-- TESTIMONIAL 3 -->
-
-        <div class="testimonial-card">
-
-
-            <i class="fa-solid fa-quote-left"></i>
-
-
-            <p data-i18n="testimonial3">
-
-                Une équipe sérieuse,
-                professionnelle et à l'écoute.
-
-            </p>
-
-
-            <h4>
-
-                ⭐⭐⭐⭐⭐
-
-            </h4>
-
-
-            <span data-i18n="sme">
-
-                PME
-
-            </span>
-
-
-        </div>
-
-
-    </div>
-
+<section class="pricing section" id="pricing">
+  <div class="section-heading reveal">
+    <span class="eyebrow" data-i18n="pricingEyebrow">OFFRES</span>
+    <h2 data-i18n="pricingTitle">Nos tarifs</h2>
+    <p class="section-subtitle" data-i18n="pricingSubtitle">Des solutions professionnelles adaptées à votre budget.</p>
+  </div>
+  <div class="pricing-grid">
+    <article class="pricing-card reveal">
+      <i class="fa-solid fa-bullseye"></i><h3 data-i18n="landingPage">Landing Page</h3>
+      <p class="price" data-i18n="landingPrice">À partir de 15 000 DA</p>
+      <ul><li data-i18n="modernDesign">✓ Design moderne</li><li data-i18n="responsiveMobile">✓ Responsive Mobile</li><li data-i18n="contactForm">✓ Formulaire de contact</li><li data-i18n="whatsappIntegration">✓ Intégration WhatsApp</li><li data-i18n="seoOptimization">✓ Optimisation SEO</li></ul>
+      <a href="#contact" class="pricing-btn" data-i18n="requestQuote">Demander un devis</a>
+    </article>
+
+    <article class="pricing-card featured reveal">
+      <span class="popular" data-i18n="popular">POPULAIRE</span><i class="fa-solid fa-globe"></i><h3 data-i18n="website">Site Web</h3>
+      <p class="price" data-i18n="websitePrice">À partir de 30 000 DA</p>
+      <ul><li data-i18n="professionalDesign">✓ Design professionnel</li><li data-i18n="multiplePages">✓ Plusieurs pages</li><li data-i18n="responsiveMobile">✓ Responsive Mobile</li><li data-i18n="contactForm">✓ Formulaire de contact</li><li data-i18n="seoOptimization">✓ Optimisation SEO</li></ul>
+      <a href="#contact" class="pricing-btn" data-i18n="requestQuote">Demander un devis</a>
+    </article>
+
+    <article class="pricing-card reveal">
+      <i class="fa-solid fa-mobile-screen-button"></i><h3 data-i18n="mobileApp">Application Mobile</h3>
+      <p class="price" data-i18n="mobilePrice">À partir de 40 000 DA</p>
+      <ul><li data-i18n="androidApp">✓ Application Android</li><li data-i18n="modernInterface">✓ Interface moderne</li><li data-i18n="databaseFeature">✓ Base de données</li><li data-i18n="authentication">✓ Authentification</li><li data-i18n="technicalSupport">✓ Support technique</li></ul>
+      <a href="#contact" class="pricing-btn" data-i18n="requestQuote">Demander un devis</a>
+    </article>
+  </div>
+  <p class="pricing-note" data-i18n="pricingNote">* Les tarifs sont indicatifs. Le prix final dépend des fonctionnalités, de la complexité et des besoins spécifiques du projet.</p>
 </section>
 
+<section class="about section" id="about">
+  <div class="about-image reveal">
+    <img src="images/about.png" alt="À propos de Nabil Apps" onerror="this.style.display='none'">
+    <div class="about-placeholder"><i class="fa-solid fa-laptop-code"></i><strong>Nabil Apps</strong><span>Innovation • Qualité • Support</span></div>
+  </div>
+  <div class="about-content reveal">
+    <span class="eyebrow" data-i18n="aboutEyebrow">À PROPOS</span>
+    <h2 data-i18n="aboutTitle">À propos de Nabil Apps</h2>
+    <p data-i18n="aboutText1">Nabil Apps est spécialisé dans le développement d'applications Desktop, Web et Mobile.</p>
+    <p data-i18n="aboutText2">Nous créons des solutions innovantes pour les entreprises, commerces, cliniques, restaurants, salles de sport et ateliers.</p>
+    <div class="about-list">
+      <div><i class="fa-solid fa-check"></i><span data-i18n="aboutDesktop">Développement Desktop</span></div>
+      <div><i class="fa-solid fa-check"></i><span data-i18n="aboutWeb">Développement Web</span></div>
+      <div><i class="fa-solid fa-check"></i><span data-i18n="aboutAndroid">Applications Android</span></div>
+      <div><i class="fa-solid fa-check"></i><span data-i18n="aboutSaas">Solutions SaaS</span></div>
+      <div><i class="fa-solid fa-check"></i><span data-i18n="aboutSupport">Maintenance & Support</span></div>
+    </div>
+    <a href="#contact" class="btn btn-primary" data-i18n="quote">Demander un devis</a>
+  </div>
+</section>
 
+<section class="process section">
+  <div class="section-heading reveal"><span class="eyebrow" data-i18n="processEyebrow">MÉTHODE</span><h2 data-i18n="processTitle">Comment travaillons-nous ?</h2></div>
+  <div class="process-grid">
+    <article class="process-card reveal"><b>01</b><i class="fa-solid fa-comments"></i><h3 data-i18n="step1">Analyse</h3><p data-i18n="step1Text">Compréhension de votre besoin et définition du projet.</p></article>
+    <article class="process-card reveal"><b>02</b><i class="fa-solid fa-pen-ruler"></i><h3 data-i18n="step2">Conception</h3><p data-i18n="step2Text">Conception de l'interface, de la base et de l'architecture.</p></article>
+    <article class="process-card reveal"><b>03</b><i class="fa-solid fa-code"></i><h3 data-i18n="step3">Développement</h3><p data-i18n="step3Text">Développement et tests de votre solution.</p></article>
+    <article class="process-card reveal"><b>04</b><i class="fa-solid fa-rocket"></i><h3 data-i18n="step4">Livraison</h3><p data-i18n="step4Text">Déploiement, formation et support après livraison.</p></article>
+  </div>
+</section>
 
-<!-- =====================================================
-     CONTACT
-===================================================== -->
+<section class="testimonials section">
+  <div class="section-heading reveal"><span class="eyebrow" data-i18n="testimonialsEyebrow">TÉMOIGNAGES</span><h2 data-i18n="testimonialsTitle">Ce que disent nos clients</h2></div>
+  <div class="testimonial-grid">
+    <article class="testimonial-card reveal"><i class="fa-solid fa-quote-left"></i><p data-i18n="testimonial1">Excellent travail, application moderne et support technique rapide.</p><h4>⭐⭐⭐⭐⭐</h4><span data-i18n="company">Entreprise</span></article>
+    <article class="testimonial-card reveal"><i class="fa-solid fa-quote-left"></i><p data-i18n="testimonial2">Très satisfait du développement de notre application de gestion.</p><h4>⭐⭐⭐⭐⭐</h4><span data-i18n="professionalClient">Client Professionnel</span></article>
+    <article class="testimonial-card reveal"><i class="fa-solid fa-quote-left"></i><p data-i18n="testimonial3">Une équipe sérieuse, professionnelle et à l'écoute.</p><h4>⭐⭐⭐⭐⭐</h4><span data-i18n="sme">PME</span></article>
+  </div>
+</section>
 
-<section class="contact"
-         id="contact">
-
-
-    <h2 data-i18n="contactTitle">
-
-        Contactez-nous
-
-    </h2>
-
-
-    <p data-i18n="contactText">
-
-        Besoin d'une application ?
-        Contactez Nabil Apps dès aujourd'hui.
-
-    </p>
-
-
-    <form class="contact-form"
-          id="contactForm">
-
-
-        <!-- NAME -->
-
-        <input
-            type="text"
-            id="contactName"
-            name="name"
-            placeholder="Votre nom"
-            autocomplete="name"
-            required
-        >
-
-
-        <!-- EMAIL -->
-
-        <input
-            type="email"
-            id="contactEmail"
-            name="email"
-            placeholder="Votre email"
-            autocomplete="email"
-            required
-        >
-
-
-        <!-- PHONE -->
-
-        <input
-            type="tel"
-            id="contactPhone"
-            name="phone"
-            placeholder="Téléphone"
-            autocomplete="tel"
-        >
-
-
-        <!-- PROJECT -->
-
-        <textarea
-            id="contactProject"
-            name="project"
-            placeholder="Décrivez votre projet..."
-            rows="6"
-        ></textarea>
-
-
-        <!-- WHATSAPP -->
-
-        <button type="submit"
-                id="sendWhatsAppBtn">
-
-            <i class="fab fa-whatsapp"></i>
-
-            <span data-i18n="send">
-
-                Envoyer
-
-            </span>
-
-        </button>
-
-
+<section class="contact section" id="contact">
+  <div class="section-heading reveal"><span class="eyebrow" data-i18n="contactEyebrow">CONTACT</span><h2 data-i18n="contactTitle">Contactez-nous</h2><p data-i18n="contactText">Besoin d'une application ? Contactez Nabil Apps dès aujourd'hui.</p></div>
+  <div class="contact-wrapper">
+    <form class="contact-form reveal" id="contactForm">
+      <label for="contactName" data-i18n="nameLabel">Votre nom</label>
+      <input type="text" id="contactName" name="name" placeholder="Votre nom" required autocomplete="name">
+      <label for="contactEmail" data-i18n="emailLabel">Votre email</label>
+      <input type="email" id="contactEmail" name="email" placeholder="Votre email" required autocomplete="email">
+      <label for="contactPhone" data-i18n="phoneLabel">Téléphone</label>
+      <input type="tel" id="contactPhone" name="phone" placeholder="Téléphone" autocomplete="tel">
+      <label for="contactProject" data-i18n="projectLabel">Votre projet</label>
+      <textarea id="contactProject" name="project" placeholder="Décrivez votre projet..." rows="6"></textarea>
+      <button type="submit" class="btn whatsapp-submit" id="sendWhatsAppBtn"><i class="fab fa-whatsapp"></i><span data-i18n="send">Envoyer sur WhatsApp</span></button>
     </form>
 
-
-    <!-- CONTACT INFORMATION -->
-
-    <div class="contact-info">
-
-
-        <p>
-
-            <i class="fa-solid fa-phone"></i>
-
-            +213 661 10 65 68
-
-        </p>
-
-
-        <p>
-
-            <i class="fa-solid fa-envelope"></i>
-
-            berkanenabil3@gmail.com
-
-        </p>
-
-
-        <p>
-
-            <i class="fa-solid fa-location-dot"></i>
-
-            <span data-i18n="location">
-
-                Sétif - Algérie
-
-            </span>
-
-        </p>
-
-
+    <div class="contact-info reveal">
+      <div class="contact-box"><i class="fa-solid fa-phone"></i><div><strong data-i18n="phone">Téléphone</strong><p>+213 661 10 65 68</p></div></div>
+      <div class="contact-box"><i class="fa-solid fa-envelope"></i><div><strong>Email</strong><p>berkanenabil3@gmail.com</p></div></div>
+      <div class="contact-box"><i class="fa-solid fa-location-dot"></i><div><strong data-i18n="locationTitle">Localisation</strong><p data-i18n="location">Sétif - Algérie</p></div></div>
+      <div class="contact-box"><i class="fa-solid fa-clock"></i><div><strong data-i18n="availability">Disponibilité</strong><p data-i18n="availabilityText">Projets sur demande</p></div></div>
     </div>
-
-
+  </div>
 </section>
-
-
-
-<!-- =====================================================
-     FOOTER
-===================================================== -->
+</main>
 
 <footer>
-
-
-    <div class="footer-logo">
-
-
-        <img src="images/logo.png"
-             alt="Nabil Apps">
-
-
-        <h3>
-
-            Nabil Apps
-
-        </h3>
-
-
-    </div>
-
-
-    <p>
-
-        <span data-i18n="footerDescription">
-
-            Développement Desktop • Web • Mobile
-
-        </span>
-
-    </p>
-
-
-    <!-- SOCIAL NETWORKS -->
-
-    <div class="footer-social">
-
-
-        <!-- FACEBOOK -->
-
-        <a href="https://www.facebook.com/share/1VxiBDFbxY/"
-           target="_blank"
-           rel="noopener noreferrer"
-           aria-label="Facebook">
-
-            <i class="fab fa-facebook-f"></i>
-
-        </a>
-
-
-        <!-- LINKEDIN -->
-
-        <a href="https://www.linkedin.com/in/nabil-berkane-8a10b11a3"
-           target="_blank"
-           rel="noopener noreferrer"
-           aria-label="LinkedIn">
-
-            <i class="fab fa-linkedin-in"></i>
-
-        </a>
-
-
-        <!-- GITHUB -->
-
-        <a href="https://github.com/"
-           target="_blank"
-           rel="noopener noreferrer"
-           aria-label="GitHub">
-
-            <i class="fab fa-github"></i>
-
-        </a>
-
-
-        <!-- WHATSAPP -->
-
-        <a href="https://wa.me/213661106568"
-           target="_blank"
-           rel="noopener noreferrer"
-           aria-label="WhatsApp">
-
-            <i class="fab fa-whatsapp"></i>
-
-        </a>
-
-
-    </div>
-
-
-    <p class="copyright"
-       data-i18n="copyright">
-
-        © 2026 Nabil Apps. Tous droits réservés.
-
-    </p>
-
-
+  <div class="footer-logo"><img src="images/logo.png" alt="Nabil Apps" onerror="this.style.display='none'"><h3>Nabil Apps</h3></div>
+  <p data-i18n="footerDescription">Développement Desktop • Web • Mobile</p>
+  <div class="footer-social">
+    <a href="https://www.facebook.com/share/1VxiBDFbxY/" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+    <a href="https://www.linkedin.com/in/nabil-berkane-8a10b11a3" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+    <a href="https://github.com/" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a>
+    <a href="https://wa.me/213661106568" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+  </div>
+  <p class="copyright" data-i18n="copyright">© 2026 Nabil Apps. Tous droits réservés.</p>
 </footer>
 
-
-
-<!-- =====================================================
-     FLOATING WHATSAPP
-===================================================== -->
-
-<a href="https://wa.me/213661106568"
-   class="whatsapp-float"
-   target="_blank"
-   rel="noopener noreferrer"
-   aria-label="WhatsApp">
-
-    <i class="fab fa-whatsapp"></i>
-
+<a href="https://wa.me/213661106568?text=Bonjour%20Nabil%20Apps%2C%20je%20souhaite%20avoir%20des%20informations%20sur%20vos%20services." class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+  <i class="fab fa-whatsapp"></i>
 </a>
 
-
-
-<!-- =====================================================
-     JAVASCRIPT
-===================================================== -->
+<button class="back-to-top" id="backToTop" aria-label="Retour en haut"><i class="fa-solid fa-arrow-up"></i></button>
 
 <script src="script.js"></script>
-
-
 </body>
-
 </html>

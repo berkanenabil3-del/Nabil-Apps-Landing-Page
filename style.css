@@ -229,3 +229,422 @@ footer{padding:45px 6%;text-align:center;background:#0b1220;color:#dbe6f5}
   .language-btn{padding:0 10px}
   .header-actions{gap:5px}
 }
+
+/* =========================================================
+   NABIL APPS - HEADER DESKTOP FIX
+   ========================================================= */
+
+header {
+    width: 100%;
+    min-height: 78px;
+    height: 78px;
+    padding: 0 5%;
+    box-sizing: border-box;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    background: var(--background, #ffffff);
+}
+
+/* LOGO */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+    order: 1;
+}
+
+.logo img {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+}
+
+.logo span {
+    font-size: 21px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+/* NAVIGATION */
+header nav {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    margin-right: 25px;
+    order: 2;
+}
+
+header nav ul {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+header nav ul li {
+    margin: 0;
+    padding: 0;
+}
+
+header nav ul li a {
+    display: inline-block;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+/* HEADER ACTIONS */
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+    order: 3;
+}
+
+/* DARK MODE */
+.theme-toggle {
+    width: 44px;
+    height: 44px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 12px;
+    cursor: pointer;
+}
+
+/* LANGUAGE */
+.language-dropdown {
+    position: relative;
+}
+
+.language-btn {
+    height: 44px;
+    padding: 0 14px;
+
+    display: flex;
+    align-items: center;
+    gap: 7px;
+
+    border-radius: 12px;
+    cursor: pointer;
+}
+
+/* MOBILE BUTTON - HIDDEN ON PC */
+.mobile-menu-toggle {
+    display: none;
+}
+
+
+/* =========================================================
+   HERO DESKTOP
+   ========================================================= */
+
+.hero {
+    width: 100%;
+    min-height: calc(100vh - 78px);
+
+    box-sizing: border-box;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 50px;
+
+    padding: 70px 7%;
+}
+
+.hero-content {
+    flex: 1;
+    max-width: 650px;
+}
+
+.hero-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-image img {
+    width: 100%;
+    max-width: 680px;
+    height: auto;
+    display: block;
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 1100px) {
+
+    header {
+        padding: 0 3%;
+    }
+
+    header nav ul {
+        gap: 18px;
+    }
+
+    header nav {
+        margin-right: 15px;
+    }
+
+    .hero {
+        padding: 60px 5%;
+        gap: 30px;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+    header {
+        height: 72px;
+        min-height: 72px;
+
+        padding: 0 15px;
+
+        justify-content: space-between;
+    }
+
+    /* LOGO */
+    .logo {
+        order: 1;
+    }
+
+    .logo img {
+        width: 42px;
+        height: 42px;
+    }
+
+    .logo span {
+        font-size: 19px;
+    }
+
+    /* HEADER ACTIONS */
+    .header-actions {
+        order: 2;
+        margin-left: auto;
+        margin-right: 8px;
+
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+    .theme-toggle {
+        width: 40px;
+        height: 40px;
+    }
+
+    .language-btn {
+        height: 40px;
+        padding: 0 10px;
+    }
+
+    /* HAMBURGER */
+    .mobile-menu-toggle {
+        order: 3;
+
+        display: flex;
+
+        width: 42px;
+        height: 42px;
+
+        align-items: center;
+        justify-content: center;
+
+        border: none;
+        background: transparent;
+
+        font-size: 25px;
+        cursor: pointer;
+    }
+
+    /* NAV */
+    header nav {
+        position: absolute;
+
+        top: 72px;
+        left: 0;
+
+        width: 100%;
+
+        display: none;
+
+        margin: 0;
+
+        background: var(--background, #ffffff);
+
+        box-shadow: 0 10px 25px rgba(0,0,0,0.10);
+
+        order: 4;
+    }
+
+    header nav.active {
+        display: block;
+    }
+
+    header nav ul {
+        width: 100%;
+
+        display: flex;
+        flex-direction: column;
+
+        gap: 0;
+
+        padding: 10px 0;
+        margin: 0;
+    }
+
+    header nav ul li {
+        width: 100%;
+    }
+
+    header nav ul li a {
+        display: block;
+
+        width: 100%;
+        box-sizing: border-box;
+
+        padding: 15px 22px;
+    }
+
+    /* HERO */
+    .hero {
+        min-height: auto;
+
+        display: flex;
+        flex-direction: column;
+
+        text-align: center;
+
+        padding: 55px 20px 40px;
+
+        gap: 30px;
+    }
+
+    .hero-content {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .hero h1 {
+        font-size: clamp(40px, 10vw, 58px);
+        line-height: 1.08;
+    }
+
+    .hero p {
+        font-size: 18px;
+        line-height: 1.65;
+    }
+
+    .hero-buttons {
+        display: flex;
+        flex-direction: column;
+
+        width: 100%;
+        max-width: 420px;
+
+        margin: 0 auto;
+
+        gap: 12px;
+    }
+
+    .hero-buttons a {
+        width: 100%;
+        box-sizing: border-box;
+        text-align: center;
+    }
+
+    .hero-image {
+        width: 100%;
+        margin-top: 15px;
+    }
+
+    .hero-image img {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+    }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+    header {
+        padding: 0 10px;
+    }
+
+    .logo img {
+        width: 38px;
+        height: 38px;
+    }
+
+    .logo span {
+        font-size: 18px;
+    }
+
+    .header-actions {
+        gap: 3px;
+        margin-right: 4px;
+    }
+
+    .theme-toggle {
+        width: 38px;
+        height: 38px;
+    }
+
+    .language-btn {
+        width: 44px;
+        height: 38px;
+        padding: 0;
+
+        justify-content: center;
+    }
+
+    .language-btn span {
+        display: none;
+    }
+
+    .mobile-menu-toggle {
+        width: 38px;
+        height: 38px;
+    }
+
+    .hero {
+        padding: 45px 16px 30px;
+    }
+
+    .hero h1 {
+        font-size: 42px;
+    }
+
+    .hero p {
+        font-size: 17px;
+    }
+}
